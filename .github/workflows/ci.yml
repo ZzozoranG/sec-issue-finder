@@ -37,3 +37,17 @@ jobs:
 
       - name: Build
         run: cargo build
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: npm test
+        run: npm test
+
+      - name: npm lint
+        run: npm run lint --if-present
+
+      - name: npm pack dry run
+        run: npm pack --dry-run
