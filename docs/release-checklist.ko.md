@@ -41,7 +41,7 @@ npm-specific release check, tarball install test, account policy check는 [docs/
 
 ## Cargo Publish 체크리스트
 
-- `Cargo.toml`의 repository placeholder를 실제 GitHub URL로 교체합니다.
+- `Cargo.toml`의 repository URL이 실제 GitHub repository와 일치하는지 확인합니다.
 - crates.io에서 crate name 사용 가능 여부를 확인합니다.
 - 포함 파일 확인:
 

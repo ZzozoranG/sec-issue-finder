@@ -41,7 +41,7 @@ For npm-specific release checks, including tarball install testing and account p
 
 ## Cargo Publish Checklist
 
-- Replace the repository placeholder in `Cargo.toml` with the real GitHub URL.
+- Confirm the `Cargo.toml` repository URL matches the real GitHub repository.
 - Confirm crate name availability on crates.io.
 - Review included files:
 

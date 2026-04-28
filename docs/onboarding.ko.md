@@ -768,7 +768,7 @@ cargo build
 
 release 전 남은 대표 확인 사항:
 
-- `Cargo.toml`의 repository placeholder를 실제 GitHub URL로 바꾸기
+- `Cargo.toml`의 repository URL이 실제 GitHub repository와 일치하는지 확인하기
 - `cargo publish --dry-run` 실행
 - GitHub release note 작성
 - tag 생성 전 release checklist 확인

@@ -158,7 +158,7 @@ Confirm `package.json` has correct final values:
 - [ ] `types`
 - [ ] `files`
 
-Confirm repository placeholders are replaced before public release.
+Confirm repository URLs match the public GitHub repository before release.
 
 ## README Check
 

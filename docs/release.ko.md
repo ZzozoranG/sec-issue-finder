@@ -158,7 +158,7 @@ npm pack --dry-run
 - [ ] `types`
 - [ ] `files`
 
-public release 전에 repository placeholder가 실제 값으로 교체되었는지 확인하세요.
+release 전에 repository URL이 public GitHub repository와 일치하는지 확인하세요.
 
 ## README 확인
 
