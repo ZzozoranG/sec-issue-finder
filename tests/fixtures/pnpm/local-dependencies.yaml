@@ -1,0 +1,19 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    dependencies:
+      local-workspace:
+        specifier: workspace:*
+        version: link:../local-workspace
+      local-file:
+        specifier: file:../local-file
+        version: file:../local-file
+      lodash:
+        specifier: 4.17.20
+        version: 4.17.20
+packages:
+  link:../local-workspace: {}
+  file:../local-file: {}
+  /lodash@4.17.20: {}
+snapshots:
+  workspace:local-only: {}

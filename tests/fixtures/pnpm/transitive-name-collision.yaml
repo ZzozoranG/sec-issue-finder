@@ -1,0 +1,10 @@
+lockfileVersion: '9.0'
+importers:
+  packages/app:
+    dependencies:
+      shared-pkg:
+        specifier: 1.0.0
+        version: 1.0.0
+packages:
+  /shared-pkg@1.0.0: {}
+  /shared-pkg@2.0.0: {}

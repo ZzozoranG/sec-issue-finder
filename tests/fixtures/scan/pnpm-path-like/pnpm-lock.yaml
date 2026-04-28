@@ -1,0 +1,26 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    dependencies:
+      '@scope/pkg':
+        specifier: 2.0.0
+        version: 2.0.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      local-file:
+        specifier: file:../local-file
+        version: file:../local-file
+      local-link:
+        specifier: link:../local-link
+        version: link:../local-link
+packages:
+  file:../local-file: {}
+  link:../local-link: {}
+  ../foo@file:../foo: {}
+  ./foo@1.0.0: {}
+  /absolute/path@1.0.0: {}
+  /bogus@file:../bogus: {}
+  /bogus@../bogus: {}
+  /@scope/pkg@2.0.0: {}
+  /react-dom@18.2.0(react@18.2.0): {}

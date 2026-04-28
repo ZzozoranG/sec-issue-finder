@@ -1,0 +1,10 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    devDependencies:
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+packages:
+  /eslint@8.57.0:
+    dev: true

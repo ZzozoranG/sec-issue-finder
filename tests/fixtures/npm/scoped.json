@@ -1,0 +1,14 @@
+{
+  "name": "fixture",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "dependencies": {
+        "@scope/pkg": "2.0.0"
+      }
+    },
+    "node_modules/@scope/pkg": {
+      "version": "2.0.0"
+    }
+  }
+}

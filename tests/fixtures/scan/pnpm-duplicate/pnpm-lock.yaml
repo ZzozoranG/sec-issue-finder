@@ -1,0 +1,13 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    dependencies:
+      lodash:
+        specifier: 4.17.20
+        version: 4.17.20
+      lodash-with-peer:
+        specifier: 4.17.20
+        version: 4.17.20(peer@1.0.0)
+packages:
+  /lodash@4.17.20: {}
+  /lodash@4.17.20(peer@1.0.0): {}

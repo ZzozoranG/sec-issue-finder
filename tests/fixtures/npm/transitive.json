@@ -1,0 +1,20 @@
+{
+  "name": "fixture",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "dependencies": {
+        "react": "18.2.0"
+      }
+    },
+    "node_modules/react": {
+      "version": "18.2.0",
+      "dependencies": {
+        "loose-envify": "^1.1.0"
+      }
+    },
+    "node_modules/loose-envify": {
+      "version": "1.4.0"
+    }
+  }
+}

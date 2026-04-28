@@ -1,0 +1,38 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    dependencies:
+      '@scope/pkg':
+        specifier: 2.0.0
+        version: 2.0.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      link-dep:
+        specifier: link:../link-dep
+        version: link:../link-dep
+      file-dep:
+        specifier: file:../file-dep
+        version: file:../file-dep
+      workspace-dep:
+        specifier: workspace:*
+        version: workspace:*
+      portal-dep:
+        specifier: portal:../portal-dep
+        version: portal:../portal-dep
+      path-dep:
+        specifier: path:../path-dep
+        version: path:../path-dep
+packages:
+  link:../link-dep: {}
+  file:../file-dep: {}
+  workspace:workspace-dep@1.0.0: {}
+  portal:../portal-dep: {}
+  path:../path-dep: {}
+  ../foo@file:../foo: {}
+  ./foo: {}
+  /absolute/path: {}
+  /bad@file:../bad: {}
+  /bad@../bad: {}
+  /@scope/pkg@2.0.0: {}
+  /react-dom@18.2.0(react@18.2.0): {}

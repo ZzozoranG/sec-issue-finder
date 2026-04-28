@@ -1,0 +1,10 @@
+lockfileVersion: '9.0'
+importers:
+  packages/app:
+    devDependencies:
+      '@scope/tool':
+        specifier: 3.0.0
+        version: 3.0.0
+packages:
+  /@scope/tool@3.0.0:
+    dev: true
