@@ -50,6 +50,8 @@ npm pack --dry-run
 
 ## Pull Request
 
+GitHub에서 새 pull request를 열면 `.github/pull_request_template.md`의 checklist가 자동으로 채워집니다.
+
 좋은 pull request는 범위가 명확하며 다음을 포함합니다.
 
 - 동작 변경에 대한 간결한 설명

@@ -50,6 +50,8 @@ npm pack --dry-run
 
 ## Pull Requests
 
+GitHub automatically pre-fills new pull requests with the checklist in `.github/pull_request_template.md`.
+
 Good pull requests are focused and include:
 
 - A concise explanation of the behavior change.
