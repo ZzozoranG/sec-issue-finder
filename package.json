@@ -6,12 +6,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KangJuO/sec-issue-finder.git"
+    "url": "git+https://github.com/ZzozoranG/sec-issue-finder.git"
   },
   "bugs": {
-    "url": "https://github.com/KangJuO/sec-issue-finder/issues"
+    "url": "https://github.com/ZzozoranG/sec-issue-finder/issues"
   },
-  "homepage": "https://github.com/KangJuO/sec-issue-finder#readme",
+  "homepage": "https://github.com/ZzozoranG/sec-issue-finder#readme",
   "bin": {
     "scif": "./npm/bin.js"
   },
