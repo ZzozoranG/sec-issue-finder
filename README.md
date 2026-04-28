@@ -39,14 +39,16 @@ Results depend on public advisory databases and the package/version data present
 - It does not maintain a local offline vulnerability database yet.
 - It does not currently support Dart, Rust, Yarn, Bun, or Python lockfiles.
 
-## Installation From Source
+## Installation
 
 Prerequisites:
 
 - Rust 2021-compatible toolchain
 - Cargo
 
-Install from this repository:
+### Install From Source
+
+Install the Rust CLI from this repository:
 
 ```bash
 cargo install --path .
@@ -57,6 +59,39 @@ Or run without installing:
 ```bash
 cargo run -- scan
 ```
+
+### npm Global Install
+
+Planned npm install command after package publication:
+
+```bash
+npm install -g sec-issue-finder
+scif scan
+```
+
+Preview limitation: the npm package currently does not include prebuilt Rust binaries. Until binary distribution is implemented, users must build the Rust CLI first or have `sec-issue-finder` available on `PATH`.
+
+### npm Project Install
+
+Planned project-local npm install command after package publication:
+
+```bash
+npm install -D sec-issue-finder
+npx scif scan
+```
+
+For pre-publish validation, use the local file dependency or tarball workflows in [docs/scif-local-testing.md](docs/scif-local-testing.md).
+
+### pnpm Project Install
+
+Planned project-local pnpm install command after package publication:
+
+```bash
+pnpm add -D sec-issue-finder
+pnpm exec scif scan
+```
+
+This is also subject to the current preview limitation: the npm wrapper does not yet ship prebuilt binaries.
 
 ## Local Usage
 
@@ -109,6 +144,19 @@ sec-issue-finder scan --fail-on low
 ```
 
 Unknown severity findings do not fail policy by default.
+
+## Local scif Wrapper Testing
+
+The repository includes a local npm wrapper that exposes the short `scif` command for development testing. This is intended for validating real npm and pnpm projects before any npm publish or prebuilt binary work.
+
+The npm wrapper is still preview/local-validation focused. It does not include prebuilt binaries yet, so local testing expects you to build the Rust CLI from this checkout first.
+
+See [docs/scif-local-testing.md](docs/scif-local-testing.md) for:
+
+- `npm link` smoke testing
+- `npm install -D ../sec-finder` and `npx scif ...`
+- `pnpm add -D ../sec-finder` and `pnpm exec scif ...`
+- `npm pack` tarball installation testing without publishing
 
 ## Lockfile Auto-Detection
 
@@ -244,6 +292,10 @@ Roadmap items are planned work and are not supported unless documented in the cu
 Contributions are welcome. Useful areas include parser fixtures, OSV response edge cases, reporter output tests, and CI integration examples.
 
 New to the project? Start with the [onboarding guide](docs/onboarding.md). A Korean version is also available at [docs/onboarding.ko.md](docs/onboarding.ko.md).
+
+For release preparation, see [docs/release.md](docs/release.md). Changes are tracked in [CHANGELOG.md](CHANGELOG.md).
+
+For branch and commit strategy, see [docs/git-workflow.md](docs/git-workflow.md).
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. For vulnerability reports, use the private process in [SECURITY.md](SECURITY.md).
 

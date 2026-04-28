@@ -1,5 +1,7 @@
 # Code of Conduct
 
+[한국어](CODE_OF_CONDUCT.ko.md)
+
 ## Our Pledge
 
 We are committed to a respectful, harassment-free project environment for contributors and users.

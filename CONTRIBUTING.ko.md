@@ -1,10 +1,14 @@
 # 기여 가이드
 
+[English](CONTRIBUTING.md)
+
 `sec-issue-finder`를 개선하는 데 도움을 주셔서 감사합니다.
 
 ## 범위
 
-이 프로젝트는 현재 OSV 보안 권고 조회를 사용하는 npm `package-lock.json` 스캔을 지원합니다. parser, scan, reporter, test가 병합되기 전까지는 향후 ecosystem 작업을 이미 구현된 기능처럼 설명하지 말아 주세요.
+이 프로젝트는 현재 OSV 보안 권고 조회를 사용하는 npm `package-lock.json`과 registry npm 의존성 중심의 `pnpm-lock.yaml` 스캔을 지원합니다. parser, scan, reporter, test가 병합되기 전까지는 향후 ecosystem 작업을 이미 구현된 기능처럼 설명하지 말아 주세요.
+
+npm wrapper는 아직 preview/local validation 중심입니다. prebuilt Rust binary를 포함하지 않습니다.
 
 ## 개발
 
@@ -23,7 +27,16 @@ pull request를 열기 전에 다음을 실행하세요.
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test
+cargo test --features test-utils
 cargo build
+```
+
+npm wrapper를 변경했다면 다음도 실행하세요.
+
+```bash
+npm test
+npm run lint --if-present
+npm pack --dry-run
 ```
 
 ## 테스트
@@ -33,6 +46,7 @@ cargo build
 - fixture 프로젝트 안에서 package manager를 실행하지 마세요.
 - lockfile parser 동작에는 작고 손으로 작성한 fixture를 추가하는 것을 선호합니다.
 - 신뢰할 수 없는 파일을 파싱할 때는 잘못된 입력과 누락된 필드 사례를 커버하세요.
+- scan 동작을 변경했다면 `cargo test --features test-utils`로 feature-gated CLI 통합 테스트도 실행하세요.
 
 ## Pull Request
 
@@ -42,6 +56,8 @@ cargo build
 - 새 동작에 대한 테스트
 - 사용자에게 보이는 동작이 바뀌는 경우 문서 업데이트
 - 관련 없는 포맷 변경 최소화
+
+브랜치 이름, 커밋 스타일, release branch, publish 경계는 [docs/git-workflow.ko.md](docs/git-workflow.ko.md)를 따르세요.
 
 ## 보안에 민감한 변경
 

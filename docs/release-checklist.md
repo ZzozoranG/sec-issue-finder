@@ -1,5 +1,7 @@
 # v0.1.0 Release Checklist
 
+[한국어](release-checklist.ko.md)
+
 This checklist is for the initial open source release of `sec-issue-finder`.
 
 ## Scope Check
@@ -15,9 +17,14 @@ This checklist is for the initial open source release of `sec-issue-finder`.
 ## Pre-Release Verification
 
 ```bash
+npm test
+npm run build --if-present
+npm run lint --if-present
+npm pack --dry-run
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test
+cargo test --features test-utils
 cargo build
 ```
 
@@ -29,6 +36,8 @@ Confirm:
 - Tests do not call the real OSV API.
 - `Cargo.toml` package metadata is complete.
 - `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md` are present.
+
+For npm-specific release checks, including tarball install testing and account policy checks, use [docs/release.md](release.md).
 
 ## Cargo Publish Checklist
 
@@ -81,7 +90,7 @@ git push origin v0.1.0
 
 ## Future Work
 
-- npm wrapper package for easier installation from JavaScript projects.
+- Prebuilt binary distribution for the npm wrapper.
 - Dart `pubspec.lock`
 - Rust `Cargo.lock`
 - `yarn.lock`

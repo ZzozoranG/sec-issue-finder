@@ -1,10 +1,14 @@
 # Contributing
 
+[한국어](CONTRIBUTING.ko.md)
+
 Thanks for helping improve `sec-issue-finder`.
 
 ## Scope
 
-This project currently supports npm `package-lock.json` scanning with OSV advisory lookup. Please do not describe future ecosystem work as implemented until parser, scan, reporter, and tests are merged.
+This project currently supports npm `package-lock.json` and best-effort `pnpm-lock.yaml` scanning for registry npm dependencies with OSV advisory lookup. Please do not describe future ecosystem work as implemented until parser, scan, reporter, and tests are merged.
+
+The npm wrapper is still preview/local-validation focused. It does not include prebuilt Rust binaries yet.
 
 ## Development
 
@@ -23,7 +27,16 @@ Before opening a pull request, run:
 cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test
+cargo test --features test-utils
 cargo build
+```
+
+For npm wrapper changes, also run:
+
+```bash
+npm test
+npm run lint --if-present
+npm pack --dry-run
 ```
 
 ## Tests
@@ -33,6 +46,7 @@ cargo build
 - Do not run package managers inside fixture projects.
 - Add small hand-written fixtures for lockfile parser behavior.
 - Cover malformed input and missing-field cases when parsing untrusted files.
+- Run feature-gated CLI integration tests with `cargo test --features test-utils` when changing scan behavior.
 
 ## Pull Requests
 
@@ -42,6 +56,8 @@ Good pull requests are focused and include:
 - Tests for new behavior.
 - Documentation updates when user-facing behavior changes.
 - No unrelated formatting churn.
+
+For branch names, commit style, release branches, and publish boundaries, follow [docs/git-workflow.md](docs/git-workflow.md).
 
 ## Security-Sensitive Changes
 
