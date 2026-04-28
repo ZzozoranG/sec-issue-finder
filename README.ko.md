@@ -4,7 +4,7 @@
 
 `sec-issue-finder`는 알려진 오픈 소스 보안 권고를 기준으로 의존성 lockfile을 스캔하는 Rust CLI입니다.
 
-현재는 npm `package-lock.json`과 `pnpm-lock.yaml` 파일을 읽고, 설치된 의존성을 정규화한 뒤 OSV에 질의하며, 결과를 표 또는 JSON 형식으로 출력합니다. 로컬 개발 환경 점검과 CI 정책 게이트에 사용하는 것을 목표로 합니다.
+현재는 npm `package-lock.json`과 registry npm 의존성 중심의 `pnpm-lock.yaml` 파일을 읽고, 설치된 의존성을 정규화한 뒤 OSV에 질의하며, 결과를 표 또는 JSON 형식으로 출력합니다. 로컬 개발 환경 점검과 CI 정책 게이트에 사용하는 것을 목표로 합니다.
 
 결과는 공개 보안 권고 데이터베이스와 lockfile에 포함된 패키지/버전 정보에 의존합니다. 이 도구는 모든 취약점을 완전하게 탐지한다고 주장하지 않습니다.
 
@@ -12,7 +12,7 @@
 
 - 지원 lockfile:
   - npm `package-lock.json` v2/v3
-  - pnpm `pnpm-lock.yaml`
+  - pnpm `pnpm-lock.yaml`의 registry npm 의존성
 - OSV `/v1/querybatch`를 통한 보안 권고 조회
 - 사람이 읽기 쉬운 표 출력
 - 자동화에 적합한 JSON 출력
@@ -39,14 +39,16 @@
 - 아직 로컬 오프라인 취약점 데이터베이스를 유지하지 않습니다.
 - 현재 Dart, Rust, Yarn, Bun, Python lockfile은 지원하지 않습니다.
 
-## 소스에서 설치
+## 설치
 
 필수 조건:
 
 - Rust 2021 호환 toolchain
 - Cargo
 
-이 저장소에서 설치:
+### 소스에서 설치
+
+이 저장소에서 Rust CLI 설치:
 
 ```bash
 cargo install --path .
@@ -57,6 +59,39 @@ cargo install --path .
 ```bash
 cargo run -- scan
 ```
+
+### npm 전역 설치
+
+패키지 공개 후 사용할 예정인 npm 전역 설치 명령:
+
+```bash
+npm install -g sec-issue-finder
+scif scan
+```
+
+Preview 제한사항: 현재 npm 패키지는 prebuilt Rust binary를 포함하지 않습니다. binary 배포가 구현되기 전까지는 사용자가 먼저 Rust CLI를 빌드하거나 `sec-issue-finder` binary를 `PATH`에 제공해야 합니다.
+
+### npm 프로젝트 설치
+
+패키지 공개 후 사용할 예정인 프로젝트 로컬 설치 명령:
+
+```bash
+npm install -D sec-issue-finder
+npx scif scan
+```
+
+공개 배포 전 검증은 [docs/scif-local-testing.ko.md](docs/scif-local-testing.ko.md)의 local file dependency 또는 tarball workflow를 사용하세요.
+
+### pnpm 프로젝트 설치
+
+패키지 공개 후 사용할 예정인 pnpm 프로젝트 로컬 설치 명령:
+
+```bash
+pnpm add -D sec-issue-finder
+pnpm exec scif scan
+```
+
+이 방식도 현재 preview 제한사항의 영향을 받습니다. npm wrapper는 아직 prebuilt binary를 포함하지 않습니다.
 
 ## 로컬 사용법
 
@@ -104,6 +139,19 @@ sec-issue-finder scan --fail-on low
 
 심각도가 unknown인 Finding은 기본적으로 정책 실패를 일으키지 않습니다.
 
+## 로컬 scif Wrapper 테스트
+
+이 저장소에는 개발 테스트용 짧은 `scif` 명령을 제공하는 npm wrapper가 포함되어 있습니다. 이는 npm publish 또는 prebuilt binary 작업 전에 실제 npm/pnpm 프로젝트에서 동작을 검증하기 위한 것입니다.
+
+npm wrapper는 아직 preview/local validation 중심입니다. prebuilt binary를 포함하지 않으므로 로컬 테스트 전 이 저장소에서 Rust CLI를 먼저 빌드해야 합니다.
+
+자세한 절차는 [docs/scif-local-testing.ko.md](docs/scif-local-testing.ko.md)를 참고하세요.
+
+- `npm link` smoke test
+- `npm install -D ../sec-finder`와 `npx scif ...`
+- `pnpm add -D ../sec-finder`와 `pnpm exec scif ...`
+- publish 없이 `npm pack` tarball 설치 테스트
+
 ## Lockfile 자동 감지
 
 `--lockfile`을 제공하지 않은 경우:
@@ -117,6 +165,8 @@ sec-issue-finder scan --fail-on low
 ## OSV Ecosystem 매핑
 
 pnpm은 npm 패키지를 설치합니다. 따라서 `pnpm-lock.yaml`에서 파싱한 의존성은 별도의 `"pnpm"` ecosystem이 아니라 OSV ecosystem `"npm"`으로 질의합니다.
+
+이 스캐너에는 별도의 OSV ecosystem `"pnpm"`이 없습니다. advisory ecosystem과 source lockfile은 별도로 추적됩니다.
 
 보고서에는 source lockfile 정보가 포함되어 의존성이 `package-lock.json`에서 왔는지 `pnpm-lock.yaml`에서 왔는지 확인할 수 있습니다.
 
@@ -211,6 +261,7 @@ sec-issue-finder scan --format json --fail-on high > sec-issue-finder-report.jso
 - OSV의 가용성, rate limit, 응답 품질이 스캔 결과에 영향을 줄 수 있습니다.
 - 심각도 정규화는 보수적으로 동작하며, 심각도 데이터가 없거나 인식되지 않으면 `unknown`으로 보고할 수 있습니다.
 - 현재는 npm ecosystem lockfile인 `package-lock.json`과 `pnpm-lock.yaml`만 지원합니다.
+- pnpm 지원은 현재 registry npm 의존성에 초점을 둡니다.
 - pnpm local `workspace:`, `link:`, `file:` 의존성은 registry package version이 없으면 skip될 수 있습니다.
 - pnpm peer dependency suffix는 가능한 경우 정규화합니다. 예를 들어 `react-dom@18.2.0(react@18.2.0)`은 `react-dom@18.2.0`으로 처리됩니다.
 - 스캐너는 취약점이 애플리케이션에서 실제로 도달 가능하거나 악용 가능하다는 것을 증명하지 않습니다.
@@ -234,6 +285,10 @@ sec-issue-finder scan --format json --fail-on high > sec-issue-finder-report.jso
 기여를 환영합니다. parser fixture, OSV 응답 edge case, reporter 출력 테스트, CI 통합 예시 등이 특히 도움이 됩니다.
 
 프로젝트가 처음이라면 [온보딩 가이드](docs/onboarding.ko.md)부터 읽어보세요. 영문 버전은 [docs/onboarding.md](docs/onboarding.md)에 있습니다.
+
+릴리스 전 점검은 [docs/release.ko.md](docs/release.ko.md)를 참고하세요. 변경 내역은 [CHANGELOG.ko.md](CHANGELOG.ko.md)에 정리되어 있습니다.
+
+브랜치와 커밋 전략은 [docs/git-workflow.ko.md](docs/git-workflow.ko.md)를 참고하세요.
 
 pull request를 열기 전에 [CONTRIBUTING.ko.md](CONTRIBUTING.ko.md)를 읽어 주세요. 취약점 제보는 [SECURITY.ko.md](SECURITY.ko.md)의 비공개 절차를 사용해 주세요.
 

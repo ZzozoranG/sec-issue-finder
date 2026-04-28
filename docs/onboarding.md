@@ -762,7 +762,7 @@ For v0.1.0, the project has:
 
 Remaining release checks:
 
-- Replace the repository placeholder in `Cargo.toml` with the real GitHub URL.
+- Confirm the repository URL in `Cargo.toml` matches the real GitHub repository.
 - Run `cargo publish --dry-run`.
 - Prepare GitHub release notes.
 - Confirm the release checklist before tagging.

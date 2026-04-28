@@ -1,0 +1,33 @@
+{
+  "name": "sec-issue-finder",
+  "version": "0.1.0",
+  "description": "A multi-ecosystem open source dependency security scanner.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KangJuO/sec-issue-finder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KangJuO/sec-issue-finder/issues"
+  },
+  "homepage": "https://github.com/KangJuO/sec-issue-finder#readme",
+  "bin": {
+    "scif": "./npm/bin.js"
+  },
+  "main": "./npm/index.js",
+  "types": "./npm/index.d.ts",
+  "files": [
+    "npm/bin.js",
+    "npm/index.js",
+    "npm/index.d.ts",
+    "npm/lib/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test npm/test/*.test.js",
+    "build": "cargo build --release",
+    "lint": "node --check npm/bin.js && node --check npm/index.js && node --check npm/lib/binary.js && node --check npm/lib/errors.js"
+  }
+}

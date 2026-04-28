@@ -1,5 +1,7 @@
 # Security Policy
 
+[한국어](SECURITY.ko.md)
+
 ## Supported Versions
 
 The project is preparing an initial `0.1.0` release. Until a stable release process is established, security fixes target the default branch.
