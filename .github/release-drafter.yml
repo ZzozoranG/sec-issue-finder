@@ -1,0 +1,61 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+
+version-resolver:
+  major:
+    labels:
+      - breaking
+  minor:
+    labels:
+      - feature
+      - enhancement
+  patch:
+    labels:
+      - bug
+      - fix
+      - security
+      - documentation
+      - maintenance
+      - dependencies
+  default: patch
+
+categories:
+  - title: "Features"
+    labels:
+      - feature
+      - enhancement
+  - title: "Fixes"
+    labels:
+      - bug
+      - fix
+  - title: "Security"
+    labels:
+      - security
+  - title: "Documentation"
+    labels:
+      - documentation
+  - title: "Maintenance"
+    labels:
+      - maintenance
+      - dependencies
+      - ci
+
+exclude-labels:
+  - skip-changelog
+
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-title-escapes: '\<*_&'
+
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Release Checklist
+
+  - [ ] Confirm CI is passing.
+  - [ ] Confirm `CHANGELOG.md` and `CHANGELOG.ko.md` are updated if this is a release-visible change.
+  - [ ] Confirm package metadata points to the public repository.
+  - [ ] Confirm `npm pack --dry-run` output is safe.
+  - [ ] Confirm this release does not imply unsupported ecosystems or auto-fix.
+  - [ ] Confirm npm publish is approved separately, if applicable.

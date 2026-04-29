@@ -186,6 +186,37 @@ pnpm exec scif scan
 - [ ] README does not claim complete vulnerability coverage.
 - [ ] README does not imply auto-fix exists.
 
+## Release Drafter Check
+
+Release Drafter updates a GitHub release draft when changes are pushed to `main`.
+
+Maintainers should create these repository labels if they do not already exist:
+
+```text
+feature
+enhancement
+bug
+fix
+security
+documentation
+maintenance
+dependencies
+ci
+skip-changelog
+breaking
+```
+
+Confirm before publishing a release:
+
+- [ ] Merged pull requests have useful titles.
+- [ ] Merged pull requests have appropriate labels: `feature`, `bug`, `security`, `documentation`, `maintenance`, `dependencies`, or `ci`.
+- [ ] Pull requests that should not appear in release notes are labeled `skip-changelog`.
+- [ ] The generated GitHub release draft is reviewed by a maintainer.
+- [ ] `CHANGELOG.md` and `CHANGELOG.ko.md` are manually updated from the reviewed release draft.
+- [ ] The release draft does not claim unsupported ecosystems, complete vulnerability coverage, or auto-fix.
+
+Release Drafter does not publish npm packages and does not replace the manual release checklist.
+
 ## npm Account And Publishing Policy
 
 Before publishing:

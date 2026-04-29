@@ -14,37 +14,38 @@ This document defines the branch and commit strategy for `sec-issue-finder`.
 
 ## Branch Strategy
 
-Use short-lived branches from `main`.
+Use two primary branch families:
+
+- `feature/<short-topic>` for normal development, fixes, documentation, tests, and maintenance changes.
+- `version/<version>` for release stabilization and version-specific release preparation.
 
 Recommended branch names:
 
 ```text
-feat/<short-topic>
-fix/<short-topic>
-docs/<short-topic>
-test/<short-topic>
-chore/<short-topic>
-release/<version>
+feature/<short-topic>
+version/<version>
 ```
 
 Examples:
 
 ```text
-feat/yarn-lock-parser
-fix/pnpm-peer-suffix-normalization
-docs/npm-preview-install
-test/osv-client-errors
-chore/ci-node-wrapper-checks
-release/0.1.0
+feature/yarn-lock-parser
+feature/pnpm-peer-suffix-normalization
+feature/npm-preview-install-docs
+feature/osv-client-error-tests
+feature/ci-node-wrapper-checks
+version/0.1.0
 ```
 
 ## Branch Rules
 
 - `main` should stay releasable.
 - Do not commit directly to `main` unless the repository owner explicitly chooses that workflow.
-- Keep feature branches focused on one user-visible change or one internal maintenance goal.
+- Keep `feature/*` branches focused on one user-visible change or one internal maintenance goal.
+- Use `version/*` branches only for release stabilization, version metadata, changelog finalization, release checklist updates, and final release fixes.
 - Rebase or merge `main` before opening a pull request if the branch is stale.
-- Do not mix release packaging, parser behavior, reporter output, and documentation rewrites in one branch unless they are part of the same release task.
+- Do not mix unrelated feature work into `version/*` branches.
+- Do not mix release packaging, parser behavior, reporter output, and documentation rewrites in one branch unless they are part of the same feature or version task.
 - Do not include generated artifacts such as `target/`, `node_modules/`, local tarballs, logs, or `.env` files.
 
 ## Commit Strategy
@@ -111,15 +112,15 @@ rg -n "TODO|OWNER|publish|prebuilt" README.md docs *.md
 
 and verify links changed by the edit.
 
-## Release Branches
+## Version Branches
 
-Use a release branch only when preparing a version:
+Use a version branch only when preparing a version:
 
 ```text
-release/0.1.0
+version/0.1.0
 ```
 
-Release branches may include:
+Version branches may include:
 
 - version updates
 - changelog updates
@@ -128,7 +129,14 @@ Release branches may include:
 - documentation corrections
 - final CI fixes
 
-Release branches must not include unrelated feature work.
+Version branches must not include unrelated feature work.
+
+Merge order:
+
+1. Merge completed `feature/*` branches into `main`.
+2. Create `version/<version>` from `main` when the release scope is frozen.
+3. Apply only release stabilization changes to `version/<version>`.
+4. Merge `version/<version>` back into `main` after release approval.
 
 ## npm Publishing Boundary
 

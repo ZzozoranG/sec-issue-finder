@@ -186,6 +186,37 @@ pnpm exec scif scan
 - [ ] README가 완전한 취약점 coverage를 주장하지 않습니다.
 - [ ] README가 auto-fix가 있다고 암시하지 않습니다.
 
+## Release Drafter 확인
+
+Release Drafter는 `main`에 변경 사항이 push되면 GitHub release draft를 갱신합니다.
+
+없다면 maintainer가 repository label을 먼저 만들어야 합니다.
+
+```text
+feature
+enhancement
+bug
+fix
+security
+documentation
+maintenance
+dependencies
+ci
+skip-changelog
+breaking
+```
+
+release publish 전에 확인:
+
+- [ ] merge된 pull request title이 release note에 적합합니다.
+- [ ] merge된 pull request에 적절한 label이 있습니다: `feature`, `bug`, `security`, `documentation`, `maintenance`, `dependencies`, `ci`
+- [ ] release note에 포함하지 않을 pull request에는 `skip-changelog` label이 있습니다.
+- [ ] 생성된 GitHub release draft를 maintainer가 검토했습니다.
+- [ ] 검토된 release draft를 기준으로 `CHANGELOG.md`와 `CHANGELOG.ko.md`를 수동 업데이트했습니다.
+- [ ] release draft가 미지원 ecosystem, 완전한 vulnerability coverage, auto-fix를 주장하지 않습니다.
+
+Release Drafter는 npm package를 publish하지 않으며 manual release checklist를 대체하지 않습니다.
+
 ## npm 계정 및 Publishing 정책
 
 publish 전 확인:

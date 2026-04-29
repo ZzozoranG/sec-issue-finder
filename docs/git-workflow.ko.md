@@ -14,37 +14,38 @@
 
 ## 브랜치 전략
 
-`main`에서 짧게 유지되는 branch를 만듭니다.
+두 가지 primary branch family를 사용합니다.
+
+- `feature/<short-topic>`: 일반 개발, bug fix, 문서, 테스트, maintenance 변경
+- `version/<version>`: release stabilization 및 version-specific release 준비
 
 권장 branch 이름:
 
 ```text
-feat/<short-topic>
-fix/<short-topic>
-docs/<short-topic>
-test/<short-topic>
-chore/<short-topic>
-release/<version>
+feature/<short-topic>
+version/<version>
 ```
 
 예시:
 
 ```text
-feat/yarn-lock-parser
-fix/pnpm-peer-suffix-normalization
-docs/npm-preview-install
-test/osv-client-errors
-chore/ci-node-wrapper-checks
-release/0.1.0
+feature/yarn-lock-parser
+feature/pnpm-peer-suffix-normalization
+feature/npm-preview-install-docs
+feature/osv-client-error-tests
+feature/ci-node-wrapper-checks
+version/0.1.0
 ```
 
 ## 브랜치 규칙
 
 - `main`은 releasable한 상태로 유지합니다.
 - 저장소 owner가 명시적으로 선택한 workflow가 아니라면 `main`에 직접 commit하지 않습니다.
-- feature branch는 하나의 user-visible change 또는 하나의 internal maintenance 목표에 집중합니다.
+- `feature/*` branch는 하나의 user-visible change 또는 하나의 internal maintenance 목표에 집중합니다.
+- `version/*` branch는 release stabilization, version metadata, changelog finalization, release checklist update, final release fix에만 사용합니다.
 - branch가 오래되었다면 pull request 전에 `main`을 rebase 또는 merge합니다.
-- 같은 release task가 아니라면 release packaging, parser behavior, reporter output, documentation rewrite를 한 branch에 섞지 않습니다.
+- 관련 없는 feature work를 `version/*` branch에 섞지 않습니다.
+- 같은 feature 또는 version task가 아니라면 release packaging, parser behavior, reporter output, documentation rewrite를 한 branch에 섞지 않습니다.
 - `target/`, `node_modules/`, local tarball, log, `.env` 같은 generated artifact를 포함하지 않습니다.
 
 ## 커밋 전략
@@ -111,15 +112,15 @@ rg -n "TODO|OWNER|publish|prebuilt" README.md docs *.md
 
 그리고 변경한 link가 올바른지 확인합니다.
 
-## Release Branch
+## Version Branch
 
-version 준비 시에만 release branch를 사용합니다.
+version 준비 시에만 version branch를 사용합니다.
 
 ```text
-release/0.1.0
+version/0.1.0
 ```
 
-Release branch에 포함할 수 있는 항목:
+Version branch에 포함할 수 있는 항목:
 
 - version update
 - changelog update
@@ -128,7 +129,14 @@ Release branch에 포함할 수 있는 항목:
 - documentation correction
 - final CI fix
 
-Release branch에는 관련 없는 feature work를 포함하지 않습니다.
+Version branch에는 관련 없는 feature work를 포함하지 않습니다.
+
+Merge 순서:
+
+1. 완료된 `feature/*` branch를 `main`으로 merge합니다.
+2. release scope가 freeze되면 `main`에서 `version/<version>` branch를 만듭니다.
+3. `version/<version>`에는 release stabilization 변경만 적용합니다.
+4. release approval 후 `version/<version>`을 다시 `main`으로 merge합니다.
 
 ## npm Publishing 경계
 

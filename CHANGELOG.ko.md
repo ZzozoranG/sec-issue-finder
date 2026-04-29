@@ -22,6 +22,15 @@
 - `scif` 명령을 제공하는 local npm wrapper
 - Rust CLI를 실행하고 JSON 출력을 파싱하는 최소 Node.js `scan()` API
 - 릴리스 및 로컬 검증 문서
+- `npm test`, lint, `npm pack --dry-run`을 포함한 npm wrapper CI 검증
+- 동작, 보안, 테스트, 문서, npm publish 경계를 확인하는 pull request checklist template
+- release, local testing, changelog, code of conduct, git workflow 문서의 한국어/영어 문서 쌍
+- feature branch, version branch, commit hygiene, release boundary를 정의한 git workflow 문서
+- merge된 pull request를 기반으로 GitHub release draft를 생성하는 Release Drafter 설정
+
+### 변경됨
+
+- repository metadata가 `ZzozoranG/sec-issue-finder` 조직 저장소를 가리키도록 변경됨
 
 ### 보안
 
