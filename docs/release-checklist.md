@@ -38,6 +38,7 @@ Confirm:
 - `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, and `CODE_OF_CONDUCT.md` are present.
 - Release Drafter has generated a draft and a maintainer has reviewed it.
 - `CHANGELOG.md` and `CHANGELOG.ko.md` match the reviewed release draft.
+- CODEOWNERS and Dependabot configuration match the current repository ownership and dependency policy.
 
 For npm-specific release checks, including tarball install testing and account policy checks, use [docs/release.md](release.md).
 

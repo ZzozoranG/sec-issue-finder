@@ -217,6 +217,17 @@ release publish 전에 확인:
 
 Release Drafter는 npm package를 publish하지 않으며 manual release checklist를 대체하지 않습니다.
 
+## Repository Maintenance 확인
+
+release 전에 repository automation 설정을 확인합니다.
+
+- [ ] CODEOWNERS가 의도한 maintainer user 또는 organization team을 가리킵니다.
+- [ ] organization team을 사용한다면 해당 team이 repository write access를 가지고 있습니다.
+- [ ] project policy라면 branch protection 또는 ruleset에서 CODEOWNER review를 요구합니다.
+- [ ] Dependabot이 Cargo, npm, GitHub Actions에 대해 활성화되어 있습니다.
+- [ ] Dependabot label이 존재합니다: `dependencies`, `rust`, `npm`, `github-actions`
+- [ ] Dependabot pull request는 일반 code change처럼 review하며 CI 없이 auto-merge하지 않습니다.
+
 ## npm 계정 및 Publishing 정책
 
 publish 전 확인:

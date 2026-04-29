@@ -61,6 +61,9 @@ Release Drafter가 변경 사항을 분류할 수 있도록 하나 이상의 lab
 - `maintenance`
 - `dependencies`
 - `ci`
+- `rust`
+- `npm`
+- `github-actions`
 - release note에 포함하지 않을 변경은 `skip-changelog`
 
 좋은 pull request는 범위가 명확하며 다음을 포함합니다.

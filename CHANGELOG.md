@@ -27,6 +27,8 @@ The format is based on Keep a Changelog, and this project follows semantic versi
 - Bilingual documentation coverage for release, local testing, changelog, code of conduct, and git workflow docs.
 - Git workflow documentation for feature branches, version branches, commit hygiene, and release boundaries.
 - Release Drafter configuration for GitHub release draft generation from merged pull requests.
+- CODEOWNERS configuration for repository-wide maintainer review ownership.
+- Dependabot configuration for Cargo, npm, and GitHub Actions dependency updates.
 
 ### Changed
 

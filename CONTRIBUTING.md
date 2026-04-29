@@ -61,6 +61,9 @@ Add one or more labels so Release Drafter can categorize the change:
 - `maintenance`
 - `dependencies`
 - `ci`
+- `rust`
+- `npm`
+- `github-actions`
 - `skip-changelog` for changes that should not appear in release notes
 
 Good pull requests are focused and include:

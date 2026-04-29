@@ -38,6 +38,7 @@ cargo build
 - `LICENSE`, `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`가 존재합니다.
 - Release Drafter가 draft를 생성했고 maintainer가 검토했습니다.
 - `CHANGELOG.md`와 `CHANGELOG.ko.md`가 검토된 release draft와 일치합니다.
+- CODEOWNERS와 Dependabot 설정이 현재 repository ownership 및 dependency policy와 일치합니다.
 
 npm-specific release check, tarball install test, account policy check는 [docs/release.ko.md](release.ko.md)를 사용하세요.
 
