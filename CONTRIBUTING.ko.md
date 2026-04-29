@@ -52,6 +52,17 @@ npm pack --dry-run
 
 GitHub에서 새 pull request를 열면 `.github/pull_request_template.md`의 checklist가 자동으로 채워집니다.
 
+Release Drafter가 변경 사항을 분류할 수 있도록 하나 이상의 label을 추가하세요.
+
+- `feature` 또는 `enhancement`
+- `bug` 또는 `fix`
+- `security`
+- `documentation`
+- `maintenance`
+- `dependencies`
+- `ci`
+- release note에 포함하지 않을 변경은 `skip-changelog`
+
 좋은 pull request는 범위가 명확하며 다음을 포함합니다.
 
 - 동작 변경에 대한 간결한 설명
@@ -59,7 +70,7 @@ GitHub에서 새 pull request를 열면 `.github/pull_request_template.md`의 ch
 - 사용자에게 보이는 동작이 바뀌는 경우 문서 업데이트
 - 관련 없는 포맷 변경 최소화
 
-브랜치 이름, 커밋 스타일, release branch, publish 경계는 [docs/git-workflow.ko.md](docs/git-workflow.ko.md)를 따르세요.
+feature branch, version branch, 커밋 스타일, publish 경계는 [docs/git-workflow.ko.md](docs/git-workflow.ko.md)를 따르세요.
 
 ## 보안에 민감한 변경
 

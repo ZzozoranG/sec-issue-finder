@@ -22,6 +22,19 @@ Describe what this PR changes and why.
 - [ ] npm wrapper / Node API
 - [ ] Documentation only
 
+## Labels
+
+Add labels so Release Drafter can place this PR in the right release note category.
+
+- [ ] `feature` / `enhancement`
+- [ ] `bug` / `fix`
+- [ ] `security`
+- [ ] `documentation`
+- [ ] `maintenance`
+- [ ] `dependencies`
+- [ ] `ci`
+- [ ] `skip-changelog`
+
 ## Behavior Checklist
 
 - [ ] User-facing behavior is described clearly.

@@ -52,6 +52,17 @@ npm pack --dry-run
 
 GitHub automatically pre-fills new pull requests with the checklist in `.github/pull_request_template.md`.
 
+Add one or more labels so Release Drafter can categorize the change:
+
+- `feature` or `enhancement`
+- `bug` or `fix`
+- `security`
+- `documentation`
+- `maintenance`
+- `dependencies`
+- `ci`
+- `skip-changelog` for changes that should not appear in release notes
+
 Good pull requests are focused and include:
 
 - A concise explanation of the behavior change.
@@ -59,7 +70,7 @@ Good pull requests are focused and include:
 - Documentation updates when user-facing behavior changes.
 - No unrelated formatting churn.
 
-For branch names, commit style, release branches, and publish boundaries, follow [docs/git-workflow.md](docs/git-workflow.md).
+For feature branches, version branches, commit style, and publish boundaries, follow [docs/git-workflow.md](docs/git-workflow.md).
 
 ## Security-Sensitive Changes
 

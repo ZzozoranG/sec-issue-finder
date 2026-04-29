@@ -22,6 +22,15 @@ The format is based on Keep a Changelog, and this project follows semantic versi
 - Local npm wrapper exposing `scif`.
 - Minimal Node.js `scan()` API that shells out to the Rust CLI and parses JSON output.
 - Release and local validation documentation.
+- CI checks for the npm wrapper, including `npm test`, lint, and `npm pack --dry-run`.
+- Pull request checklist template for behavior, security, tests, documentation, and npm publish boundaries.
+- Bilingual documentation coverage for release, local testing, changelog, code of conduct, and git workflow docs.
+- Git workflow documentation for feature branches, version branches, commit hygiene, and release boundaries.
+- Release Drafter configuration for GitHub release draft generation from merged pull requests.
+
+### Changed
+
+- Repository metadata now points to the `ZzozoranG/sec-issue-finder` organization repository.
 
 ### Security
 
