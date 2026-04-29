@@ -217,6 +217,17 @@ Confirm before publishing a release:
 
 Release Drafter does not publish npm packages and does not replace the manual release checklist.
 
+## Repository Maintenance Check
+
+Confirm repository automation is configured before release:
+
+- [ ] CODEOWNERS points to the intended maintainer user or organization team.
+- [ ] If an organization team is used, the team has write access to the repository.
+- [ ] Branch protection or rulesets require CODEOWNER review if that is the project policy.
+- [ ] Dependabot is enabled for Cargo, npm, and GitHub Actions.
+- [ ] Dependabot labels exist: `dependencies`, `rust`, `npm`, `github-actions`.
+- [ ] Dependabot pull requests are reviewed like normal code changes and are not auto-merged without CI.
+
 ## npm Account And Publishing Policy
 
 Before publishing:

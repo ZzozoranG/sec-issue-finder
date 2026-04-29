@@ -27,6 +27,8 @@
 - release, local testing, changelog, code of conduct, git workflow 문서의 한국어/영어 문서 쌍
 - feature branch, version branch, commit hygiene, release boundary를 정의한 git workflow 문서
 - merge된 pull request를 기반으로 GitHub release draft를 생성하는 Release Drafter 설정
+- repository-wide maintainer review ownership을 위한 CODEOWNERS 설정
+- Cargo, npm, GitHub Actions dependency update를 위한 Dependabot 설정
 
 ### 변경됨
 
