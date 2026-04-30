@@ -1,0 +1,15 @@
+{
+  "name": "@sec-issue-finder/darwin-x64",
+  "version": "0.1.0",
+  "description": "Prebuilt sec-issue-finder binary for macOS x64.",
+  "license": "MIT",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "bin/"
+  ]
+}

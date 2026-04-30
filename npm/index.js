@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 
-import { findBinary, missingBinaryMessage } from "./lib/binary.js";
+import { findBinary, missingBinaryMessage } from "./lib/resolve-binary.js";
 import { ScifScanError } from "./lib/errors.js";
 
 const VALID_FAIL_ON = new Set(["low", "moderate", "medium", "high", "critical"]);

@@ -3,6 +3,11 @@ export interface ScanOptions {
   noDev?: boolean;
   failOn?: "low" | "moderate" | "medium" | "high" | "critical";
   cwd?: string;
+  /**
+   * Explicit Rust CLI binary path. This has priority over
+   * SEC_ISSUE_FINDER_BINARY_PATH, optional platform packages, local build
+   * fallbacks, and PATH lookup.
+   */
   binaryPath?: string;
 }
 

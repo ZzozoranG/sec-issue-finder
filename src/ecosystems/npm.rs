@@ -58,14 +58,19 @@ fn parse_package_lock_str(
             continue;
         };
 
-        let version =
-            package
-                .version
-                .clone()
-                .ok_or_else(|| SecFinderError::MissingDependencyVersion {
-                    path: source_file.to_path_buf(),
-                    entry: entry_path.clone(),
-                })?;
+        let Some(version) = package.version.clone() else {
+            // npm can retain placeholder entries for optional dependencies that
+            // were not installed on the current platform. They do not identify a
+            // registry package version and cannot be queried against OSV.
+            if package.optional {
+                continue;
+            }
+
+            return Err(SecFinderError::MissingDependencyVersion {
+                path: source_file.to_path_buf(),
+                entry: entry_path.clone(),
+            });
+        };
 
         let dev = package.dev || package.dev_optional;
         if dev && !include_dev {
@@ -152,6 +157,8 @@ struct PackageEntry {
     dev: bool,
     #[serde(default)]
     dev_optional: bool,
+    #[serde(default)]
+    optional: bool,
     dependencies: Option<HashMap<String, String>>,
     dev_dependencies: Option<HashMap<String, String>>,
     optional_dependencies: Option<HashMap<String, String>>,
@@ -285,6 +292,16 @@ mod tests {
             error,
             SecFinderError::MissingDependencyVersion { .. }
         ));
+    }
+
+    #[test]
+    fn missing_version_optional_entry_is_skipped() {
+        let dependencies =
+            parse_package_lock(Path::new(&fixture("missing-version-optional.json")), true).unwrap();
+
+        assert_eq!(dependencies.len(), 1);
+        assert_eq!(dependencies[0].name, "sec-issue-finder");
+        assert_eq!(dependencies[0].version, "0.1.0");
     }
 
     #[test]

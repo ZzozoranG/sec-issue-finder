@@ -1,0 +1,102 @@
+name: Release Binary Artifacts
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+# This workflow only builds and uploads npm package artifacts.
+# npm publish, npm token configuration, provenance, and elevated package
+# publishing permissions belong in a later explicitly approved release workflow.
+permissions:
+  contents: read
+
+jobs:
+  build-platform-package:
+    name: Build ${{ matrix.package-dir }}
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package-dir: linux-x64
+            runner: ubuntu-latest
+            rust-target: x86_64-unknown-linux-gnu
+            platform: linux
+            arch: x64
+            binary-path: target/x86_64-unknown-linux-gnu/release/sec-issue-finder
+            artifact-name: sec-issue-finder-linux-x64-npm-package
+
+          - package-dir: win32-x64
+            runner: windows-latest
+            rust-target: x86_64-pc-windows-msvc
+            platform: win32
+            arch: x64
+            binary-path: target/x86_64-pc-windows-msvc/release/sec-issue-finder.exe
+            artifact-name: sec-issue-finder-win32-x64-npm-package
+
+          # GitHub-hosted macOS runner architecture can change by label.
+          # Keep the Rust target explicit and verify runner availability before
+          # relying on this artifact for a public release.
+          - package-dir: darwin-arm64
+            runner: macos-latest
+            rust-target: aarch64-apple-darwin
+            platform: darwin
+            arch: arm64
+            binary-path: target/aarch64-apple-darwin/release/sec-issue-finder
+            artifact-name: sec-issue-finder-darwin-arm64-npm-package
+
+          # macos-13 is currently used here to keep the x64 build explicit.
+          # Revisit this if GitHub changes hosted macOS runner labels.
+          - package-dir: darwin-x64
+            runner: macos-13
+            rust-target: x86_64-apple-darwin
+            platform: darwin
+            arch: x64
+            binary-path: target/x86_64-apple-darwin/release/sec-issue-finder
+            artifact-name: sec-issue-finder-darwin-x64-npm-package
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.rust-target }}
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+
+      - name: Install npm metadata dependencies
+        run: npm install --ignore-scripts --omit=optional --no-package-lock
+
+      - name: Build release binary
+        run: cargo build --release --target ${{ matrix.rust-target }}
+
+      - name: Prepare platform package
+        run: >
+          node scripts/prepare-platform-package.mjs
+          --platform ${{ matrix.platform }}
+          --arch ${{ matrix.arch }}
+          --binary ${{ matrix.binary-path }}
+
+      - name: Pack platform package
+        working-directory: packages/${{ matrix.package-dir }}
+        run: |
+          node -e "require('node:fs').mkdirSync('../../dist', { recursive: true })"
+          npm pack --pack-destination ../../dist
+
+      - name: Upload platform package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name }}
+          path: dist/*.tgz
+          if-no-files-found: error
