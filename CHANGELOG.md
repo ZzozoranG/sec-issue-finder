@@ -6,6 +6,18 @@ All notable changes to `sec-issue-finder` will be documented in this file.
 
 The format is based on Keep a Changelog, and this project follows semantic versioning after the initial public release.
 
+## [0.1.1] - 2026-04-30
+
+### Changed
+
+- Updated README installation instructions now that the npm preview packages are published.
+- Synchronized Rust, main npm package, and platform npm package versions for the next patch release.
+- Documented npm Trusted Publishing as the preferred automated release path after the initial manual publish.
+
+### Verification
+
+- Confirmed the published npm registry install path works on macOS arm64 with `npm install -D @zzozorang/sec-issue-finder` and `npx scif scan --help`.
+
 ## [0.1.0] - Preview
 
 ### Added
@@ -29,6 +41,9 @@ The format is based on Keep a Changelog, and this project follows semantic versi
 - Release Drafter configuration for GitHub release draft generation from merged pull requests.
 - CODEOWNERS configuration for repository-wide maintainer review ownership.
 - Dependabot configuration for Cargo, npm, and GitHub Actions dependency updates.
+- Prebuilt npm platform packages for macOS arm64, Linux x64, and Windows x64.
+- Public npm preview package `@zzozorang/sec-issue-finder`.
+- npm Trusted Publishing workflow and documentation for future automated releases.
 
 ### Changed
 
@@ -42,9 +57,8 @@ The format is based on Keep a Changelog, and this project follows semantic versi
 
 ### Limitations
 
-- The npm wrapper is preview/local-validation focused.
-- The npm package does not include prebuilt Rust binaries yet.
-- Public npm install without Rust or an existing `sec-issue-finder` binary on `PATH` is not the intended distribution mode yet.
+- The npm package is an initial preview release.
+- Linux x64 and Windows x64 binaries are built in CI, but runtime smoke tests are still pending on those operating systems.
 - pnpm support focuses on registry npm dependencies; local, workspace, link, file, and path-like dependencies may be skipped when no registry version is available.
 - Advisory coverage depends on public OSV data and does not guarantee complete vulnerability coverage.
 - Auto-fix, SARIF, CycloneDX SBOM, offline advisory cache, and additional ecosystems are not implemented yet.

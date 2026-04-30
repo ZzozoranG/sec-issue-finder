@@ -62,36 +62,34 @@ cargo run -- scan
 
 ### npm 전역 설치
 
-패키지 공개 후 사용할 예정인 npm 전역 설치 명령:
+공개된 npm CLI wrapper 설치:
 
 ```bash
 npm install -g @zzozorang/sec-issue-finder
 scif scan
 ```
 
-Preview 제한사항: 아직 public npm 배포는 진행하지 않았습니다. main package는 optional platform package에서 prebuilt binary를 찾으므로, 이 설치 경로를 사용자에게 제공하려면 platform package를 먼저 빌드, smoke test, publish해야 합니다.
+`scif` 명령을 설치하고, optional platform package에서 prebuilt Rust binary를 찾습니다. 첫 공개 preview는 macOS arm64, Linux x64, Windows x64 package를 지원합니다.
 
 ### npm 프로젝트 설치
 
-패키지 공개 후 사용할 예정인 프로젝트 로컬 설치 명령:
+프로젝트에 설치:
 
 ```bash
 npm install -D @zzozorang/sec-issue-finder
 npx scif scan
 ```
 
-공개 배포 전 검증은 [docs/scif-local-testing.ko.md](docs/scif-local-testing.ko.md)의 local file dependency 또는 tarball workflow를 사용하세요.
-
 ### pnpm 프로젝트 설치
 
-패키지 공개 후 사용할 예정인 pnpm 프로젝트 로컬 설치 명령:
+pnpm으로 설치:
 
 ```bash
 pnpm add -D @zzozorang/sec-issue-finder
 pnpm exec scif scan
 ```
 
-이 방식도 현재 preview 제한사항의 영향을 받습니다. 사용자에게 제공하려면 platform package publish가 먼저 완료되어야 합니다.
+source checkout 및 local tarball 검증은 [docs/scif-local-testing.ko.md](docs/scif-local-testing.ko.md)와 [docs/npm-prebuilt-smoke-test.md](docs/npm-prebuilt-smoke-test.md)를 참고하세요.
 
 ## 로컬 사용법
 
@@ -139,14 +137,13 @@ sec-issue-finder scan --fail-on low
 
 심각도가 unknown인 Finding은 기본적으로 정책 실패를 일으키지 않습니다.
 
-## 로컬 scif Wrapper 테스트
+## scif Wrapper 테스트
 
-이 저장소에는 짧은 `scif` 명령을 제공하는 npm wrapper가 포함되어 있습니다. public npm publish 전에는 두 가지 방식으로 검증할 수 있습니다.
+이 저장소에는 짧은 `scif` 명령을 제공하는 npm wrapper가 포함되어 있습니다. 다음 방식으로 검증할 수 있습니다.
 
 - source checkout 테스트: wrapper가 `target/release/sec-issue-finder` 또는 `target/debug/sec-issue-finder`를 fallback으로 사용합니다.
 - local prebuilt tarball 테스트: wrapper가 `@zzozorang/sec-issue-finder-darwin-arm64` 같은 현재 플랫폼용 package를 찾아 실행합니다.
-
-npm package는 아직 preview 단계입니다. Rust 없이 public npm install만으로 사용하려면 platform package artifact를 먼저 빌드, smoke test, publish해야 합니다.
+- public npm registry 테스트: `npm install -D @zzozorang/sec-issue-finder`를 사용합니다.
 
 자세한 절차는 [docs/scif-local-testing.ko.md](docs/scif-local-testing.ko.md)를 참고하세요.
 
