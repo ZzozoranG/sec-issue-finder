@@ -25,9 +25,17 @@
     "README.md",
     "LICENSE"
   ],
+  "optionalDependencies": {
+    "@sec-issue-finder/darwin-arm64": "0.1.0",
+    "@sec-issue-finder/darwin-x64": "0.1.0",
+    "@sec-issue-finder/linux-x64": "0.1.0",
+    "@sec-issue-finder/linux-arm64": "0.1.0",
+    "@sec-issue-finder/win32-x64": "0.1.0"
+  },
   "scripts": {
     "test": "node --test npm/test/*.test.js",
     "build": "cargo build --release",
-    "lint": "node --check npm/bin.js && node --check npm/index.js && node --check npm/lib/binary.js && node --check npm/lib/errors.js"
+    "lint": "node --check npm/bin.js && node --check npm/index.js && node --check npm/lib/binary.js && node --check npm/lib/errors.js && node --check npm/lib/resolve-binary.js && node --check scripts/prepare-platform-package.mjs",
+    "pack:platform": "node scripts/prepare-platform-package.mjs"
   }
 }

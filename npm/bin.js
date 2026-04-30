@@ -2,7 +2,7 @@
 
 import { spawnSync } from "node:child_process";
 
-import { findBinary, missingBinaryMessage } from "./lib/binary.js";
+import { findBinary, missingBinaryMessage } from "./lib/resolve-binary.js";
 
 const binary = findBinary();
 const result = spawnSync(binary, process.argv.slice(2), {
