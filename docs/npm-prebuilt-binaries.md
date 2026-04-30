@@ -97,9 +97,9 @@ Add these when build and smoke-test coverage is reliable:
 - `darwin-x64`
 - `linux-arm64`
 
-These are useful, but they should not block the first prebuilt-binary milestone if release automation or test infrastructure is not ready.
+These are useful, but they should not block the first prebuilt-binary milestone if release automation or test infrastructure is not ready. `darwin-x64` targets Intel macOS and is excluded from the first artifact matrix because GitHub-hosted Intel macOS runner availability can leave the release workflow queued for a long time.
 
-`linux-arm64` is intentionally not part of the first GitHub Actions release artifact matrix. Add it after runner or cross-compilation support is verified with a real smoke test.
+`linux-arm64` is also intentionally not part of the first GitHub Actions release artifact matrix. Add it after runner or cross-compilation support is verified with a real smoke test.
 
 ## 7. npm Package Structure Draft
 
@@ -142,9 +142,7 @@ The main `package.json` would eventually include optional dependencies similar t
 {
   "optionalDependencies": {
     "@sec-issue-finder/darwin-arm64": "0.1.0",
-    "@sec-issue-finder/darwin-x64": "0.1.0",
     "@sec-issue-finder/linux-x64": "0.1.0",
-    "@sec-issue-finder/linux-arm64": "0.1.0",
     "@sec-issue-finder/win32-x64": "0.1.0"
   }
 }
@@ -210,7 +208,7 @@ Suggested matrix:
 
 | Runner | Target package |
 |---|---|
-| `macos-latest` | `@sec-issue-finder/darwin-arm64` or `@sec-issue-finder/darwin-x64`, depending on runner architecture |
+| `macos-latest` | `@sec-issue-finder/darwin-arm64` |
 | `ubuntu-latest` | `@sec-issue-finder/linux-x64` |
 | `windows-latest` | `@sec-issue-finder/win32-x64` |
 
@@ -258,9 +256,7 @@ When release publication is explicitly approved:
 
    ```text
    @sec-issue-finder/darwin-arm64
-   @sec-issue-finder/darwin-x64
    @sec-issue-finder/linux-x64
-   @sec-issue-finder/linux-arm64
    @sec-issue-finder/win32-x64
    ```
 

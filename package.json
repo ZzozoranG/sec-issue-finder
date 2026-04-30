@@ -27,9 +27,7 @@
   ],
   "optionalDependencies": {
     "@sec-issue-finder/darwin-arm64": "0.1.0",
-    "@sec-issue-finder/darwin-x64": "0.1.0",
     "@sec-issue-finder/linux-x64": "0.1.0",
-    "@sec-issue-finder/linux-arm64": "0.1.0",
     "@sec-issue-finder/win32-x64": "0.1.0"
   },
   "scripts": {
