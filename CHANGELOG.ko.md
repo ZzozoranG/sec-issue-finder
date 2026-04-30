@@ -6,6 +6,18 @@
 
 이 형식은 Keep a Changelog를 참고하며, 초기 공개 릴리스 이후에는 semantic versioning을 따릅니다.
 
+## [0.1.1] - 2026-04-30
+
+### 변경됨
+
+- npm preview package가 공개된 상태에 맞게 README 설치 안내를 갱신했습니다.
+- 다음 patch release를 위해 Rust, main npm package, platform npm package version을 동기화했습니다.
+- 초기 수동 publish 이후 자동 release 경로로 npm Trusted Publishing을 문서화했습니다.
+
+### 검증
+
+- macOS arm64에서 `npm install -D @zzozorang/sec-issue-finder` 및 `npx scif scan --help`로 공개 npm registry 설치 경로가 동작함을 확인했습니다.
+
 ## [0.1.0] - Preview
 
 ### 추가됨
@@ -29,6 +41,9 @@
 - merge된 pull request를 기반으로 GitHub release draft를 생성하는 Release Drafter 설정
 - repository-wide maintainer review ownership을 위한 CODEOWNERS 설정
 - Cargo, npm, GitHub Actions dependency update를 위한 Dependabot 설정
+- macOS arm64, Linux x64, Windows x64용 prebuilt npm platform package
+- public npm preview package `@zzozorang/sec-issue-finder`
+- 향후 자동 release를 위한 npm Trusted Publishing workflow 및 문서
 
 ### 변경됨
 
@@ -42,9 +57,8 @@
 
 ### 제한사항
 
-- npm wrapper는 preview/local validation 중심입니다.
-- npm package는 아직 prebuilt Rust binary를 포함하지 않습니다.
-- Rust가 없거나 `PATH`에 기존 `sec-issue-finder` binary가 없는 환경에서 바로 공개 npm install로 사용하는 것은 아직 의도한 배포 방식이 아닙니다.
+- npm package는 초기 preview release입니다.
+- Linux x64와 Windows x64 binary는 CI에서 빌드되지만, 해당 운영체제에서의 runtime smoke test는 아직 보류 상태입니다.
 - pnpm 지원은 registry npm 의존성에 초점을 둡니다. local, workspace, link, file, path-like dependency는 registry version을 확인할 수 없으면 skip될 수 있습니다.
 - advisory coverage는 public OSV data에 의존하며 완전한 취약점 탐지를 보장하지 않습니다.
 - auto-fix, SARIF, CycloneDX SBOM, offline advisory cache, 추가 ecosystem은 아직 구현되지 않았습니다.

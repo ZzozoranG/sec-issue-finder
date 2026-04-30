@@ -1,6 +1,6 @@
 [package]
 name = "sec-issue-finder"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A multi-ecosystem open source dependency security scanner."
 license = "MIT"

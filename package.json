@@ -1,6 +1,6 @@
 {
   "name": "@zzozorang/sec-issue-finder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A multi-ecosystem open source dependency security scanner.",
   "license": "MIT",
   "type": "module",
@@ -26,9 +26,9 @@
     "LICENSE"
   ],
   "optionalDependencies": {
-    "@zzozorang/sec-issue-finder-darwin-arm64": "0.1.0",
-    "@zzozorang/sec-issue-finder-linux-x64": "0.1.0",
-    "@zzozorang/sec-issue-finder-win32-x64": "0.1.0"
+    "@zzozorang/sec-issue-finder-darwin-arm64": "0.1.1",
+    "@zzozorang/sec-issue-finder-linux-x64": "0.1.1",
+    "@zzozorang/sec-issue-finder-win32-x64": "0.1.1"
   },
   "scripts": {
     "test": "node --test npm/test/*.test.js",
