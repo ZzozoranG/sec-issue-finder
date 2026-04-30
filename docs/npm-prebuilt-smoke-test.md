@@ -36,7 +36,7 @@ Expected values map to package directories:
 | `linux-arm64` | `packages/linux-arm64` |
 | `win32-x64` | `packages/win32-x64` |
 
-The first release artifact matrix focuses on `darwin-arm64`, `darwin-x64`, `linux-x64`, and `win32-x64`. `linux-arm64` is planned but requires separate runner or cross-compilation validation.
+The first release artifact matrix focuses on `darwin-arm64`, `linux-x64`, and `win32-x64`. `darwin-x64` and `linux-arm64` are planned but require separate runner or cross-compilation validation.
 
 ## 3. Build the Release Binary
 

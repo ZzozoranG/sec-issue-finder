@@ -48,16 +48,6 @@ jobs:
             binary-path: target/aarch64-apple-darwin/release/sec-issue-finder
             artifact-name: sec-issue-finder-darwin-arm64-npm-package
 
-          # macos-13 is currently used here to keep the x64 build explicit.
-          # Revisit this if GitHub changes hosted macOS runner labels.
-          - package-dir: darwin-x64
-            runner: macos-13
-            rust-target: x86_64-apple-darwin
-            platform: darwin
-            arch: x64
-            binary-path: target/x86_64-apple-darwin/release/sec-issue-finder
-            artifact-name: sec-issue-finder-darwin-x64-npm-package
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6

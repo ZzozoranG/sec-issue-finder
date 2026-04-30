@@ -16,9 +16,7 @@ Confirm:
 - [ ] All package versions are synchronized:
   - [ ] Root `package.json`
   - [ ] `packages/darwin-arm64/package.json`
-  - [ ] `packages/darwin-x64/package.json`
   - [ ] `packages/linux-x64/package.json`
-  - [ ] `packages/linux-arm64/package.json`
   - [ ] `packages/win32-x64/package.json`
 - [ ] `CHANGELOG.md` is updated.
 - [ ] `CHANGELOG.ko.md` is updated if Korean release notes are maintained for this release.
@@ -77,11 +75,9 @@ Expected package metadata:
 | Publish order | Package | `os` | `cpu` | binary |
 |---:|---|---|---|---|
 | 1 | `@sec-issue-finder/darwin-arm64` | `darwin` | `arm64` | `bin/sec-issue-finder` |
-| 2 | `@sec-issue-finder/darwin-x64` | `darwin` | `x64` | `bin/sec-issue-finder` |
-| 3 | `@sec-issue-finder/linux-x64` | `linux` | `x64` | `bin/sec-issue-finder` |
-| 4 | `@sec-issue-finder/linux-arm64` | `linux` | `arm64` | `bin/sec-issue-finder` |
-| 5 | `@sec-issue-finder/win32-x64` | `win32` | `x64` | `bin/sec-issue-finder.exe` |
-| 6 | `sec-issue-finder` | platform-independent wrapper | platform-independent wrapper | `npm/bin.js` |
+| 2 | `@sec-issue-finder/linux-x64` | `linux` | `x64` | `bin/sec-issue-finder` |
+| 3 | `@sec-issue-finder/win32-x64` | `win32` | `x64` | `bin/sec-issue-finder.exe` |
+| 4 | `sec-issue-finder` | platform-independent wrapper | platform-independent wrapper | `npm/bin.js` |
 
 ## 4. Publish Order
 
@@ -96,11 +92,11 @@ Reason:
 Publish order:
 
 1. `@sec-issue-finder/darwin-arm64`
-2. `@sec-issue-finder/darwin-x64`
-3. `@sec-issue-finder/linux-x64`
-4. `@sec-issue-finder/linux-arm64`
-5. `@sec-issue-finder/win32-x64`
-6. `sec-issue-finder`
+2. `@sec-issue-finder/linux-x64`
+3. `@sec-issue-finder/win32-x64`
+4. `sec-issue-finder`
+
+Future platform packages such as `@sec-issue-finder/darwin-x64` and `@sec-issue-finder/linux-arm64` should be added to this publish order only after their artifacts are built and smoke-tested.
 
 ## 5. Publish Command Examples
 
