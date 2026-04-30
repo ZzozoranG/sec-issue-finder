@@ -13,6 +13,8 @@ Confirm:
 - [ ] Maintainers have publish access for the main `@zzozorang/sec-issue-finder` package.
 - [ ] npm account 2FA is enabled and usable.
 - [ ] npm provenance policy is decided.
+- [ ] For automated publishing, npm Trusted Publisher settings are configured for every package.
+- [ ] For automated publishing, `.github/workflows/npm-publish.yml` is the configured workflow filename on npmjs.com.
 - [ ] All package versions are synchronized:
   - [ ] Root `package.json`
   - [ ] `packages/darwin-arm64/package.json`
@@ -132,7 +134,35 @@ npm publish --access public --provenance
 
 Before using `--provenance`, confirm the package is being published from a supported CI environment and the repository policy is ready.
 
-## 6. Post-Publish Smoke Tests
+## 6. Trusted Publishing Automation
+
+After the initial manual preview publish, future releases should use npm Trusted Publishing.
+
+Reference: [npm Trusted Publishing](npm-trusted-publishing.md).
+
+The GitHub workflow is:
+
+```text
+.github/workflows/npm-publish.yml
+```
+
+Before running it, configure each npm package with a GitHub Actions Trusted Publisher:
+
+```text
+GitHub owner/user: ZzozoranG
+Repository: sec-issue-finder
+Workflow filename: npm-publish.yml
+```
+
+The workflow uses GitHub Actions OIDC and does not require `NPM_TOKEN`.
+
+Manual workflow dispatch requires:
+
+```text
+confirm_publish=publish
+```
+
+## 7. Post-Publish Smoke Tests
 
 Run on a new machine, clean container, or clean environment where Rust is not installed or not on `PATH`.
 
@@ -178,7 +208,7 @@ Confirm:
 - [ ] JSON output is not polluted by wrapper logs.
 - [ ] Unsupported platform and missing optional package errors are clear.
 
-## 7. Failure and Rollback Strategy
+## 8. Failure and Rollback Strategy
 
 If a published version is broken:
 
@@ -203,7 +233,7 @@ npm deprecate @zzozorang/sec-issue-finder-linux-x64@0.1.0 "Broken binary package
 
 These commands are examples only. Do not run them unless a maintainer has decided on a rollback.
 
-## 8. Never Do This
+## 9. Never Do This
 
 - Do not publish the main `@zzozorang/sec-issue-finder` package before platform packages.
 - Do not tag an unverified release as `latest`.
@@ -211,5 +241,6 @@ These commands are examples only. Do not run them unless a maintainer has decide
 - Do not include the entire `target/` directory in any npm package.
 - Do not publish from a dirty working tree.
 - Do not publish with mismatched package versions.
+- Do not store a maintainer OTP or recovery code in GitHub Secrets.
 - Do not claim support for a platform unless its binary package was built and smoke-tested.
 - Do not claim complete vulnerability coverage.
