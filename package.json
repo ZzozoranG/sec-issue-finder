@@ -6,7 +6,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZzozoranG/sec-issue-finder.git"
+    "url": "https://github.com/ZzozoranG/sec-issue-finder"
   },
   "bugs": {
     "url": "https://github.com/ZzozoranG/sec-issue-finder/issues"

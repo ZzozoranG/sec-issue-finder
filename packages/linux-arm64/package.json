@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "Prebuilt sec-issue-finder binary for Linux arm64.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZzozoranG/sec-issue-finder"
+  },
   "os": [
     "linux"
   ],
