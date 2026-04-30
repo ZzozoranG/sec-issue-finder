@@ -180,11 +180,11 @@ jobs:
       - name: Publish platform packages
         run: |
           PACKAGE_VERSION="$(node -p "require('./package.json').version")"
-          npm publish "dist/zzozorang-sec-issue-finder-darwin-arm64-${PACKAGE_VERSION}.tgz" --access public
-          npm publish "dist/zzozorang-sec-issue-finder-linux-x64-${PACKAGE_VERSION}.tgz" --access public
-          npm publish "dist/zzozorang-sec-issue-finder-win32-x64-${PACKAGE_VERSION}.tgz" --access public
+          npm publish "./dist/zzozorang-sec-issue-finder-darwin-arm64-${PACKAGE_VERSION}.tgz" --access public
+          npm publish "./dist/zzozorang-sec-issue-finder-linux-x64-${PACKAGE_VERSION}.tgz" --access public
+          npm publish "./dist/zzozorang-sec-issue-finder-win32-x64-${PACKAGE_VERSION}.tgz" --access public
 
       - name: Publish main package
         run: |
           PACKAGE_VERSION="$(node -p "require('./package.json').version")"
-          npm publish "dist/zzozorang-sec-issue-finder-${PACKAGE_VERSION}.tgz" --access public
+          npm publish "./dist/zzozorang-sec-issue-finder-${PACKAGE_VERSION}.tgz" --access public
