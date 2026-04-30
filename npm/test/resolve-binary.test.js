@@ -15,23 +15,23 @@ import {
 const testDir = dirname(fileURLToPath(import.meta.url));
 
 test("maps darwin arm64 to the darwin arm64 package", () => {
-  assert.equal(platformPackageName("darwin", "arm64"), "@sec-issue-finder/darwin-arm64");
+  assert.equal(platformPackageName("darwin", "arm64"), "@zzozorang/sec-issue-finder-darwin-arm64");
 });
 
 test("maps darwin x64 to the darwin x64 package", () => {
-  assert.equal(platformPackageName("darwin", "x64"), "@sec-issue-finder/darwin-x64");
+  assert.equal(platformPackageName("darwin", "x64"), "@zzozorang/sec-issue-finder-darwin-x64");
 });
 
 test("maps linux x64 to the linux x64 package", () => {
-  assert.equal(platformPackageName("linux", "x64"), "@sec-issue-finder/linux-x64");
+  assert.equal(platformPackageName("linux", "x64"), "@zzozorang/sec-issue-finder-linux-x64");
 });
 
 test("maps linux arm64 to the linux arm64 package", () => {
-  assert.equal(platformPackageName("linux", "arm64"), "@sec-issue-finder/linux-arm64");
+  assert.equal(platformPackageName("linux", "arm64"), "@zzozorang/sec-issue-finder-linux-arm64");
 });
 
 test("maps win32 x64 to the win32 x64 package and exe binary", () => {
-  assert.equal(platformPackageName("win32", "x64"), "@sec-issue-finder/win32-x64");
+  assert.equal(platformPackageName("win32", "x64"), "@zzozorang/sec-issue-finder-win32-x64");
   assert.equal(binaryFileName("win32"), "sec-issue-finder.exe");
 });
 
@@ -55,12 +55,18 @@ test("unsupported platform and arch have no optional package", () => {
 });
 
 test("resolves optional package binary when package is installed", () => {
-  const packageJsonPath = join("/virtual", "node_modules", "@sec-issue-finder", "linux-x64", "package.json");
+  const packageJsonPath = join(
+    "/virtual",
+    "node_modules",
+    "@zzozorang",
+    "sec-issue-finder-linux-x64",
+    "package.json",
+  );
   const binaryPath = join(
     "/virtual",
     "node_modules",
-    "@sec-issue-finder",
-    "linux-x64",
+    "@zzozorang",
+    "sec-issue-finder-linux-x64",
     "bin",
     "sec-issue-finder",
   );
@@ -118,7 +124,7 @@ test("missing binary message includes platform arch package and fixes", () => {
 
   assert.match(message, /Detected platform: linux/);
   assert.match(message, /Detected arch: x64/);
-  assert.match(message, /Expected optional package: @sec-issue-finder\/linux-x64/);
+  assert.match(message, /Expected optional package: @zzozorang\/sec-issue-finder-linux-x64/);
   assert.match(message, /Run npm install again/);
   assert.match(message, /cargo build/);
   assert.match(message, /SEC_ISSUE_FINDER_BINARY_PATH/);

@@ -112,7 +112,7 @@ npm pack
 This creates a tarball similar to:
 
 ```text
-sec-issue-finder-linux-x64-0.1.0.tgz
+zzozorang-sec-issue-finder-linux-x64-0.1.0.tgz
 ```
 
 Move back to the repository root before continuing:
@@ -132,7 +132,7 @@ npm pack
 This creates:
 
 ```text
-sec-issue-finder-0.1.0.tgz
+zzozorang-sec-issue-finder-0.1.0.tgz
 ```
 
 ## 7. Install Tarballs in a Temporary Project
@@ -148,12 +148,12 @@ npm init -y
 Install the platform package tarball first, then the main package tarball:
 
 ```bash
-npm install /path/to/sec-issue-finder-linux-x64-0.1.0.tgz
-npm install --omit=optional --ignore-scripts --no-audit --no-fund /path/to/sec-issue-finder-0.1.0.tgz
+npm install /path/to/zzozorang-sec-issue-finder-linux-x64-0.1.0.tgz
+npm install --omit=optional --ignore-scripts --no-audit --no-fund /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 npx scif scan --help
 ```
 
-Replace `sec-issue-finder-linux-x64-0.1.0.tgz` with the tarball for your platform.
+Replace `zzozorang-sec-issue-finder-linux-x64-0.1.0.tgz` with the tarball for your platform.
 
 Why install the platform package first?
 
@@ -167,8 +167,8 @@ Why install the platform package first?
 Use a separate shell or terminal after installing to reduce the chance that local development paths hide packaging problems.
 
 ```bash
-npm install -g /path/to/sec-issue-finder-linux-x64-0.1.0.tgz
-npm install -g /path/to/sec-issue-finder-0.1.0.tgz
+npm install -g /path/to/zzozorang-sec-issue-finder-linux-x64-0.1.0.tgz
+npm install -g /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 scif scan --help
 ```
 
@@ -178,7 +178,7 @@ Uninstall after testing if needed:
 
 ```bash
 npm uninstall -g sec-issue-finder
-npm uninstall -g @sec-issue-finder/linux-x64
+npm uninstall -g @zzozorang/sec-issue-finder-linux-x64
 ```
 
 Adjust the scoped package name for your platform.
@@ -254,7 +254,7 @@ npm pack
 mkdir /tmp/scif-prebuilt-test
 cd /tmp/scif-prebuilt-test
 npm init -y
-npm install /path/to/sec-issue-finder-linux-x64-0.1.0.tgz
-npm install --omit=optional --ignore-scripts --no-audit --no-fund /path/to/sec-issue-finder-0.1.0.tgz
+npm install /path/to/zzozorang-sec-issue-finder-linux-x64-0.1.0.tgz
+npm install --omit=optional --ignore-scripts --no-audit --no-fund /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 npx scif scan --help
 ```

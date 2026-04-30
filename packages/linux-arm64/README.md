@@ -1,8 +1,8 @@
-# @sec-issue-finder/linux-arm64
+# @zzozorang/sec-issue-finder-linux-arm64
 
 Prebuilt `sec-issue-finder` binary package for Linux arm64.
 
-This package is intended to be installed as an optional dependency of `sec-issue-finder`. It is not meant to be used directly.
+This package is intended to be installed as an optional dependency of `@zzozorang/sec-issue-finder`. It is not meant to be used directly.
 
 Expected binary path:
 

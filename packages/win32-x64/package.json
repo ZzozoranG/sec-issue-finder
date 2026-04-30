@@ -1,5 +1,5 @@
 {
-  "name": "@sec-issue-finder/win32-x64",
+  "name": "@zzozorang/sec-issue-finder-win32-x64",
   "version": "0.1.0",
   "description": "Prebuilt sec-issue-finder binary for Windows x64.",
   "license": "MIT",

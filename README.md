@@ -65,18 +65,18 @@ cargo run -- scan
 Planned npm install command after package publication:
 
 ```bash
-npm install -g sec-issue-finder
+npm install -g @zzozorang/sec-issue-finder
 scif scan
 ```
 
-Preview limitation: the npm package currently does not include prebuilt Rust binaries. Until binary distribution is implemented, users must build the Rust CLI first or have `sec-issue-finder` available on `PATH`.
+Preview limitation: public npm distribution is not published yet. The main package resolves prebuilt binaries from optional platform packages, so those platform packages must be built, smoke-tested, and published before this install path is ready for users.
 
 ### npm Project Install
 
 Planned project-local npm install command after package publication:
 
 ```bash
-npm install -D sec-issue-finder
+npm install -D @zzozorang/sec-issue-finder
 npx scif scan
 ```
 
@@ -87,11 +87,11 @@ For pre-publish validation, use the local file dependency or tarball workflows i
 Planned project-local pnpm install command after package publication:
 
 ```bash
-pnpm add -D sec-issue-finder
+pnpm add -D @zzozorang/sec-issue-finder
 pnpm exec scif scan
 ```
 
-This is also subject to the current preview limitation: the npm wrapper does not yet ship prebuilt binaries.
+This is also subject to the current preview limitation: the platform packages must be published before this install path is ready for users.
 
 ## Local Usage
 
@@ -147,9 +147,12 @@ Unknown severity findings do not fail policy by default.
 
 ## Local scif Wrapper Testing
 
-The repository includes a local npm wrapper that exposes the short `scif` command for development testing. This is intended for validating real npm and pnpm projects before any npm publish or prebuilt binary work.
+The repository includes an npm wrapper that exposes the short `scif` command. It supports two validation modes before any public npm publish:
 
-The npm wrapper is still preview/local-validation focused. It does not include prebuilt binaries yet, so local testing expects you to build the Rust CLI from this checkout first.
+- source checkout testing, where the wrapper falls back to `target/release/sec-issue-finder` or `target/debug/sec-issue-finder`
+- local prebuilt tarball testing, where the wrapper resolves a matching platform package such as `@zzozorang/sec-issue-finder-darwin-arm64`
+
+The npm package is still preview-stage. Public npm installation without Rust depends on platform package artifacts being built, smoke-tested, and published first.
 
 See [docs/scif-local-testing.md](docs/scif-local-testing.md) for:
 
@@ -157,6 +160,8 @@ See [docs/scif-local-testing.md](docs/scif-local-testing.md) for:
 - `npm install -D ../sec-finder` and `npx scif ...`
 - `pnpm add -D ../sec-finder` and `pnpm exec scif ...`
 - `npm pack` tarball installation testing without publishing
+
+See [docs/npm-prebuilt-smoke-test.md](docs/npm-prebuilt-smoke-test.md) for local tarball testing with prebuilt platform packages.
 
 ## Lockfile Auto-Detection
 

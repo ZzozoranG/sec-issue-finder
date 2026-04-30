@@ -7,11 +7,11 @@ const require = createRequire(import.meta.url);
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 const PLATFORM_PACKAGES = new Map([
-  ["darwin:arm64", "@sec-issue-finder/darwin-arm64"],
-  ["darwin:x64", "@sec-issue-finder/darwin-x64"],
-  ["linux:arm64", "@sec-issue-finder/linux-arm64"],
-  ["linux:x64", "@sec-issue-finder/linux-x64"],
-  ["win32:x64", "@sec-issue-finder/win32-x64"],
+  ["darwin:arm64", "@zzozorang/sec-issue-finder-darwin-arm64"],
+  ["darwin:x64", "@zzozorang/sec-issue-finder-darwin-x64"],
+  ["linux:arm64", "@zzozorang/sec-issue-finder-linux-arm64"],
+  ["linux:x64", "@zzozorang/sec-issue-finder-linux-x64"],
+  ["win32:x64", "@zzozorang/sec-issue-finder-win32-x64"],
 ]);
 
 export function binaryFileName(platform = process.platform) {
