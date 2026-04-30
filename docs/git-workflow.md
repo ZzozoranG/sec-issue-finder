@@ -146,8 +146,8 @@ For the current preview phase:
 
 - npm package publishing is manual and gated by release owner approval.
 - npm provenance policy must be checked before publishing.
-- The package currently does not include prebuilt Rust binaries.
-- If prebuilt binaries are still missing, README and release notes must clearly describe the preview limitation.
+- The main package must not be published before the supported platform packages.
+- If a supported platform binary is missing, README and release notes must clearly describe the preview limitation.
 
 ## Agent Notes
 

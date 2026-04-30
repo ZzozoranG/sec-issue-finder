@@ -14,12 +14,12 @@ import {
 test("maps supported platform packages", () => {
   assert.deepEqual(platformPackageInfo("linux", "x64"), {
     directory: "linux-x64",
-    name: "@sec-issue-finder/linux-x64",
+    name: "@zzozorang/sec-issue-finder-linux-x64",
     binaryName: "sec-issue-finder",
   });
   assert.deepEqual(platformPackageInfo("win32", "x64"), {
     directory: "win32-x64",
-    name: "@sec-issue-finder/win32-x64",
+    name: "@zzozorang/sec-issue-finder-win32-x64",
     binaryName: "sec-issue-finder.exe",
   });
 });
@@ -49,7 +49,7 @@ test("parses CLI args including dry-run", () => {
 });
 
 test("copies a Unix binary and makes it executable", async () => {
-  const root = await createFixtureRoot("linux-x64", "@sec-issue-finder/linux-x64");
+  const root = await createFixtureRoot("linux-x64", "@zzozorang/sec-issue-finder-linux-x64");
   const source = join(root, "target", "release", "sec-issue-finder");
   await mkdir(join(root, "target", "release"), { recursive: true });
   await writeFile(source, "#!/bin/sh\nexit 0\n", { mode: 0o644 });
@@ -61,14 +61,14 @@ test("copies a Unix binary and makes it executable", async () => {
     root,
   });
 
-  assert.equal(result.packageName, "@sec-issue-finder/linux-x64");
+  assert.equal(result.packageName, "@zzozorang/sec-issue-finder-linux-x64");
   assert.equal(result.targetBinary, join(root, "packages", "linux-x64", "bin", "sec-issue-finder"));
   assert.equal(await readFile(result.targetBinary, "utf8"), "#!/bin/sh\nexit 0\n");
   await access(result.targetBinary, constants.X_OK);
 });
 
 test("copies a Windows binary with exe extension", async () => {
-  const root = await createFixtureRoot("win32-x64", "@sec-issue-finder/win32-x64");
+  const root = await createFixtureRoot("win32-x64", "@zzozorang/sec-issue-finder-win32-x64");
   const source = join(root, "target", "release", "sec-issue-finder.exe");
   await mkdir(join(root, "target", "release"), { recursive: true });
   await writeFile(source, "fake exe");
@@ -85,7 +85,7 @@ test("copies a Windows binary with exe extension", async () => {
 });
 
 test("dry-run validates metadata without copying binary", async () => {
-  const root = await createFixtureRoot("darwin-arm64", "@sec-issue-finder/darwin-arm64");
+  const root = await createFixtureRoot("darwin-arm64", "@zzozorang/sec-issue-finder-darwin-arm64");
 
   const result = await preparePlatformPackage({
     platform: "darwin",
@@ -100,7 +100,7 @@ test("dry-run validates metadata without copying binary", async () => {
 });
 
 test("fails when platform package version differs from main package", async () => {
-  const root = await createFixtureRoot("linux-arm64", "@sec-issue-finder/linux-arm64", {
+  const root = await createFixtureRoot("linux-arm64", "@zzozorang/sec-issue-finder-linux-arm64", {
     platformVersion: "0.2.0",
   });
 
@@ -119,7 +119,7 @@ test("fails when platform package version differs from main package", async () =
 async function createFixtureRoot(directory, packageName, { platformVersion = "0.1.0" } = {}) {
   const root = await mkdtemp(join(tmpdir(), "scif-platform-package-"));
   await writeJson(join(root, "package.json"), {
-    name: "sec-issue-finder",
+    name: "@zzozorang/sec-issue-finder",
     version: "0.1.0",
   });
   await mkdir(join(root, "packages", directory), { recursive: true });
@@ -135,4 +135,3 @@ async function createFixtureRoot(directory, packageName, { platformVersion = "0.
 async function writeJson(path, value) {
   await writeFile(path, `${JSON.stringify(value, null, 2)}\n`);
 }
-

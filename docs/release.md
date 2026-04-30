@@ -33,15 +33,15 @@ Not included:
 
 ## Preview Binary Distribution Warning
 
-The npm package currently includes the JavaScript wrapper, but it does not include prebuilt Rust binaries.
+The main npm package includes the JavaScript wrapper and resolves prebuilt Rust binaries from optional platform packages.
 
-Before a broad public npm release, decide one of the following:
+Before a broad public npm release, confirm one of the following:
 
-- Keep the release clearly marked as preview and require users to build the Rust CLI or provide `sec-issue-finder` on `PATH`.
-- Implement prebuilt binary distribution for supported platforms.
+- Publish the supported platform packages before the main package.
+- Keep the release clearly marked as preview if a platform package is not available for a target user.
 - Provide a documented installer strategy that downloads or builds the Rust binary safely.
 
-Long term, prebuilt binaries are recommended for a normal npm CLI user experience. This checklist does not implement that strategy.
+Do not publish the main package with `optionalDependencies` that point to packages the project does not control.
 
 ## Required Local Checks
 
@@ -81,7 +81,7 @@ npm pack
 mkdir /tmp/scif-test
 cd /tmp/scif-test
 npm init -y
-npm install /path/to/sec-issue-finder-0.1.0.tgz
+npm install /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 npx scif scan --help
 ```
 
@@ -99,7 +99,7 @@ npx scif scan --lockfile package-lock.json --fail-on high
 mkdir /tmp/scif-pnpm-test
 cd /tmp/scif-pnpm-test
 pnpm init
-pnpm add -D /path/to/sec-issue-finder-0.1.0.tgz
+pnpm add -D /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 pnpm exec scif scan --help
 ```
 
@@ -169,16 +169,16 @@ Confirm:
 - [ ] README documents npm usage:
 
 ```bash
-npm install -g sec-issue-finder
+npm install -g @zzozorang/sec-issue-finder
 scif scan
-npm install -D sec-issue-finder
+npm install -D @zzozorang/sec-issue-finder
 npx scif scan
 ```
 
 - [ ] README documents pnpm usage:
 
 ```bash
-pnpm add -D sec-issue-finder
+pnpm add -D @zzozorang/sec-issue-finder
 pnpm exec scif scan
 ```
 
@@ -253,17 +253,17 @@ If provenance is required and the release is run from a supported CI environment
 After publication, verify from a clean temporary project:
 
 ```bash
-npm install -g sec-issue-finder
+npm install -g @zzozorang/sec-issue-finder
 scif scan --help
 ```
 
 ```bash
-npm install -D sec-issue-finder
+npm install -D @zzozorang/sec-issue-finder
 npx scif scan --help
 ```
 
 ```bash
-pnpm add -D sec-issue-finder
+pnpm add -D @zzozorang/sec-issue-finder
 pnpm exec scif scan --help
 ```
 

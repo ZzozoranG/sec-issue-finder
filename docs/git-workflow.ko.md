@@ -146,8 +146,8 @@ Merge 순서:
 
 - npm package publish는 manual이며 release owner approval이 필요합니다.
 - publish 전 npm provenance policy를 확인해야 합니다.
-- package는 아직 prebuilt Rust binary를 포함하지 않습니다.
-- prebuilt binary가 없다면 README와 release note가 preview limitation을 명확히 설명해야 합니다.
+- main package는 지원 platform package보다 먼저 publish하면 안 됩니다.
+- 지원 platform binary가 없다면 README와 release note가 preview limitation을 명확히 설명해야 합니다.
 
 ## Agent Notes
 

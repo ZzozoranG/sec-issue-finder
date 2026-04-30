@@ -9,7 +9,7 @@ It is a design document only. Do not publish npm packages, add release automatio
 The target user experience for Milestone 5 is:
 
 ```bash
-npm install -g sec-issue-finder
+npm install -g @zzozorang/sec-issue-finder
 scif scan --help
 ```
 
@@ -36,7 +36,7 @@ Tradeoff:
 
 ## 3. Package Roles
 
-### Main package: `sec-issue-finder`
+### Main package: `@zzozorang/sec-issue-finder`
 
 Responsibilities:
 
@@ -61,11 +61,11 @@ Responsibilities:
 Planned package names:
 
 ```text
-@sec-issue-finder/darwin-arm64
-@sec-issue-finder/darwin-x64
-@sec-issue-finder/linux-x64
-@sec-issue-finder/linux-arm64
-@sec-issue-finder/win32-x64
+@zzozorang/sec-issue-finder-darwin-arm64
+@zzozorang/sec-issue-finder-darwin-x64
+@zzozorang/sec-issue-finder-linux-x64
+@zzozorang/sec-issue-finder-linux-arm64
+@zzozorang/sec-issue-finder-win32-x64
 ```
 
 ## 4. Supported Platform List
@@ -74,11 +74,11 @@ Planned platform mapping:
 
 | npm package | `process.platform` | `process.arch` | binary name |
 |---|---:|---:|---|
-| `@sec-issue-finder/darwin-arm64` | `darwin` | `arm64` | `sec-issue-finder` |
-| `@sec-issue-finder/darwin-x64` | `darwin` | `x64` | `sec-issue-finder` |
-| `@sec-issue-finder/linux-x64` | `linux` | `x64` | `sec-issue-finder` |
-| `@sec-issue-finder/linux-arm64` | `linux` | `arm64` | `sec-issue-finder` |
-| `@sec-issue-finder/win32-x64` | `win32` | `x64` | `sec-issue-finder.exe` |
+| `@zzozorang/sec-issue-finder-darwin-arm64` | `darwin` | `arm64` | `sec-issue-finder` |
+| `@zzozorang/sec-issue-finder-darwin-x64` | `darwin` | `x64` | `sec-issue-finder` |
+| `@zzozorang/sec-issue-finder-linux-x64` | `linux` | `x64` | `sec-issue-finder` |
+| `@zzozorang/sec-issue-finder-linux-arm64` | `linux` | `arm64` | `sec-issue-finder` |
+| `@zzozorang/sec-issue-finder-win32-x64` | `win32` | `x64` | `sec-issue-finder.exe` |
 
 ## 5. Minimum First Supported Platforms
 
@@ -141,9 +141,9 @@ The main `package.json` would eventually include optional dependencies similar t
 ```json
 {
   "optionalDependencies": {
-    "@sec-issue-finder/darwin-arm64": "0.1.0",
-    "@sec-issue-finder/linux-x64": "0.1.0",
-    "@sec-issue-finder/win32-x64": "0.1.0"
+    "@zzozorang/sec-issue-finder-darwin-arm64": "0.1.0",
+    "@zzozorang/sec-issue-finder-linux-x64": "0.1.0",
+    "@zzozorang/sec-issue-finder-win32-x64": "0.1.0"
   }
 }
 ```
@@ -208,9 +208,9 @@ Suggested matrix:
 
 | Runner | Target package |
 |---|---|
-| `macos-latest` | `@sec-issue-finder/darwin-arm64` |
-| `ubuntu-latest` | `@sec-issue-finder/linux-x64` |
-| `windows-latest` | `@sec-issue-finder/win32-x64` |
+| `macos-latest` | `@zzozorang/sec-issue-finder-darwin-arm64` |
+| `ubuntu-latest` | `@zzozorang/sec-issue-finder-linux-x64` |
+| `windows-latest` | `@zzozorang/sec-issue-finder-win32-x64` |
 
 Linux ARM64 and macOS x64 may require additional runners, cross-compilation, or a separate release strategy.
 
@@ -255,9 +255,9 @@ When release publication is explicitly approved:
 1. Publish platform packages first:
 
    ```text
-   @sec-issue-finder/darwin-arm64
-   @sec-issue-finder/linux-x64
-   @sec-issue-finder/win32-x64
+   @zzozorang/sec-issue-finder-darwin-arm64
+   @zzozorang/sec-issue-finder-linux-x64
+   @zzozorang/sec-issue-finder-win32-x64
    ```
 
 2. Publish the main package last:
@@ -272,7 +272,7 @@ Reason:
 - If the main package is published first, users may install it before the referenced platform packages exist.
 - Publishing platform packages first makes the first public install path more reliable.
 
-Before publishing, verify the npm scope and package names are available and controlled by the maintainer account or organization. The `@sec-issue-finder` npm scope is a placeholder until ownership is confirmed; do not publish the main package with `optionalDependencies` that point to packages the project does not control.
+Before publishing, verify the npm scope and package names are available and controlled by the maintainer account or organization. The `@zzozorang` npm scope is owned by the project organization; do not publish the main package with `optionalDependencies` that point to packages the project does not control.
 
 ## 11. Smoke Test Procedure
 
@@ -301,7 +301,7 @@ From a clean temporary project:
 
 ```bash
 npm init -y
-npm install /path/to/sec-issue-finder-0.1.0.tgz
+npm install /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 npx scif scan --help
 ```
 
@@ -316,7 +316,7 @@ For pnpm:
 
 ```bash
 pnpm init
-pnpm add -D /path/to/sec-issue-finder-0.1.0.tgz
+pnpm add -D /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 pnpm exec scif scan --help
 pnpm exec scif scan --lockfile pnpm-lock.yaml
 pnpm exec scif scan --lockfile pnpm-lock.yaml --format json

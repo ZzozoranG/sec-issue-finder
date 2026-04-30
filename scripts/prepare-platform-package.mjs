@@ -12,7 +12,7 @@ const PLATFORM_PACKAGES = new Map([
     "darwin:arm64",
     {
       directory: "darwin-arm64",
-      name: "@sec-issue-finder/darwin-arm64",
+      name: "@zzozorang/sec-issue-finder-darwin-arm64",
       binaryName: "sec-issue-finder",
     },
   ],
@@ -20,7 +20,7 @@ const PLATFORM_PACKAGES = new Map([
     "darwin:x64",
     {
       directory: "darwin-x64",
-      name: "@sec-issue-finder/darwin-x64",
+      name: "@zzozorang/sec-issue-finder-darwin-x64",
       binaryName: "sec-issue-finder",
     },
   ],
@@ -28,7 +28,7 @@ const PLATFORM_PACKAGES = new Map([
     "linux:x64",
     {
       directory: "linux-x64",
-      name: "@sec-issue-finder/linux-x64",
+      name: "@zzozorang/sec-issue-finder-linux-x64",
       binaryName: "sec-issue-finder",
     },
   ],
@@ -36,7 +36,7 @@ const PLATFORM_PACKAGES = new Map([
     "linux:arm64",
     {
       directory: "linux-arm64",
-      name: "@sec-issue-finder/linux-arm64",
+      name: "@zzozorang/sec-issue-finder-linux-arm64",
       binaryName: "sec-issue-finder",
     },
   ],
@@ -44,7 +44,7 @@ const PLATFORM_PACKAGES = new Map([
     "win32:x64",
     {
       directory: "win32-x64",
-      name: "@sec-issue-finder/win32-x64",
+      name: "@zzozorang/sec-issue-finder-win32-x64",
       binaryName: "sec-issue-finder.exe",
     },
   ],

@@ -1,5 +1,5 @@
 {
-  "name": "@sec-issue-finder/darwin-arm64",
+  "name": "@zzozorang/sec-issue-finder-darwin-arm64",
   "version": "0.1.0",
   "description": "Prebuilt sec-issue-finder binary for macOS arm64.",
   "license": "MIT",

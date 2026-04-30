@@ -2,15 +2,15 @@
 
 [한국어](scif-local-testing.ko.md)
 
-This document covers local `scif` wrapper testing before npm publishing. It does not run `npm publish`, does not configure GitHub releases, and does not add prebuilt binary distribution.
+This document covers local `scif` wrapper testing before npm publishing. It does not run `npm publish` or configure GitHub releases.
 
 The goal is to verify that the local npm wrapper exposes `scif` and forwards arguments to the Rust CLI from real npm and pnpm projects.
 
-The current npm package is preview/local-validation focused. It does not include a Rust binary in the npm tarball. Before testing any `npm link`, file dependency, or tarball install flow, build the Rust CLI from this repository.
+The source-checkout test flow is preview/local-validation focused. It does not rely on published platform packages. Before testing `npm link` or file dependency installs from this checkout, build the Rust CLI from this repository.
 
-For `npm link` from this checkout, the wrapper can find `target/debug/sec-issue-finder` or `target/release/sec-issue-finder`. For packed tarball installs, the wrapper usually cannot see this checkout's `target/` directory, so put the built binary on `PATH` before running `npx scif` or `pnpm exec scif`.
+For `npm link` from this checkout, the wrapper can find `target/debug/sec-issue-finder` or `target/release/sec-issue-finder`. For packed main-package tarball installs without a matching platform package, the wrapper usually cannot see this checkout's `target/` directory, so put the built binary on `PATH` before running `npx scif` or `pnpm exec scif`.
 
-This means installing the package on a machine without Rust and without an existing `sec-issue-finder` binary on `PATH` is not a supported public distribution flow yet.
+For prebuilt platform tarball testing, use [npm-prebuilt-smoke-test.md](npm-prebuilt-smoke-test.md).
 
 ## Build The Rust CLI
 
@@ -28,7 +28,7 @@ For a release-mode binary, use:
 cargo build --release
 ```
 
-The wrapper searches the installed package root's `target/release` path first, then `target/debug`, then `PATH`. Tarball installs do not include `target/`, so tarball testing currently requires `sec-issue-finder` on `PATH`.
+The wrapper searches for a matching optional platform package first, then the installed package root's `target/release` path, then `target/debug`, then `PATH`. Main-package-only tarball installs do not include `target/`, so this source-checkout tarball test requires `sec-issue-finder` on `PATH` unless a matching platform package tarball is installed too.
 
 ## Test With npm link
 
@@ -112,7 +112,7 @@ npm pack
 The `npm pack` command creates a file such as:
 
 ```text
-sec-issue-finder-0.1.0.tgz
+zzozorang-sec-issue-finder-0.1.0.tgz
 ```
 
 Then create a separate npm project and install the tarball:
@@ -121,7 +121,7 @@ Then create a separate npm project and install the tarball:
 mkdir /tmp/scif-test
 cd /tmp/scif-test
 npm init -y
-npm install /path/to/sec-issue-finder-0.1.0.tgz
+npm install /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 ```
 
 Run the wrapper from the test project:
@@ -134,9 +134,9 @@ npx scif scan --lockfile package-lock.json --no-dev
 npx scif scan --lockfile package-lock.json --fail-on high
 ```
 
-Replace `/path/to/sec-issue-finder-0.1.0.tgz` with the absolute path to the tarball created by `npm pack`.
+Replace `/path/to/zzozorang-sec-issue-finder-0.1.0.tgz` with the absolute path to the tarball created by `npm pack`.
 
-Important: the tarball currently contains the JavaScript wrapper only. It does not contain a prebuilt Rust binary. For this preview flow, `scif` succeeds only if it can find `sec-issue-finder` on `PATH`.
+Important: the main package tarball contains the JavaScript wrapper only. For this source-checkout preview flow, `scif` succeeds only if it can find a matching platform package, a local `target/` binary, or `sec-issue-finder` on `PATH`.
 
 ## Test From A pnpm Tarball Without Publishing
 
@@ -153,7 +153,7 @@ Then create a separate pnpm project and install the tarball:
 mkdir /tmp/scif-pnpm-test
 cd /tmp/scif-pnpm-test
 pnpm init
-pnpm add -D /path/to/sec-issue-finder-0.1.0.tgz
+pnpm add -D /path/to/zzozorang-sec-issue-finder-0.1.0.tgz
 ```
 
 Run the wrapper from the test project:
@@ -188,7 +188,7 @@ Check these items while testing in real projects:
 
 ## Tarball Install Checklist
 
-Check these items after installing `sec-issue-finder-0.1.0.tgz` into temporary npm and pnpm projects:
+Check these items after installing `zzozorang-sec-issue-finder-0.1.0.tgz` into temporary npm and pnpm projects:
 
 - [ ] `npx scif scan --help` prints help in an npm project.
 - [ ] `pnpm exec scif scan --help` prints help in a pnpm project.

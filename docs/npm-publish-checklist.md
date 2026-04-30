@@ -8,9 +8,9 @@ It is a release checklist only. Do not run `npm publish` until every blocking it
 
 Confirm:
 
-- [ ] The npm scope `@sec-issue-finder` is secured by the project owner or organization.
+- [ ] The npm scope `@zzozorang` is secured by the project owner or organization.
 - [ ] Maintainers have publish access for all platform packages.
-- [ ] Maintainers have publish access for the main `sec-issue-finder` package.
+- [ ] Maintainers have publish access for the main `@zzozorang/sec-issue-finder` package.
 - [ ] npm account 2FA is enabled and usable.
 - [ ] npm provenance policy is decided.
 - [ ] All package versions are synchronized:
@@ -74,10 +74,10 @@ Expected package metadata:
 
 | Publish order | Package | `os` | `cpu` | binary |
 |---:|---|---|---|---|
-| 1 | `@sec-issue-finder/darwin-arm64` | `darwin` | `arm64` | `bin/sec-issue-finder` |
-| 2 | `@sec-issue-finder/linux-x64` | `linux` | `x64` | `bin/sec-issue-finder` |
-| 3 | `@sec-issue-finder/win32-x64` | `win32` | `x64` | `bin/sec-issue-finder.exe` |
-| 4 | `sec-issue-finder` | platform-independent wrapper | platform-independent wrapper | `npm/bin.js` |
+| 1 | `@zzozorang/sec-issue-finder-darwin-arm64` | `darwin` | `arm64` | `bin/sec-issue-finder` |
+| 2 | `@zzozorang/sec-issue-finder-linux-x64` | `linux` | `x64` | `bin/sec-issue-finder` |
+| 3 | `@zzozorang/sec-issue-finder-win32-x64` | `win32` | `x64` | `bin/sec-issue-finder.exe` |
+| 4 | `@zzozorang/sec-issue-finder` | platform-independent wrapper | platform-independent wrapper | `npm/bin.js` |
 
 ## 4. Publish Order
 
@@ -91,12 +91,12 @@ Reason:
 
 Publish order:
 
-1. `@sec-issue-finder/darwin-arm64`
-2. `@sec-issue-finder/linux-x64`
-3. `@sec-issue-finder/win32-x64`
-4. `sec-issue-finder`
+1. `@zzozorang/sec-issue-finder-darwin-arm64`
+2. `@zzozorang/sec-issue-finder-linux-x64`
+3. `@zzozorang/sec-issue-finder-win32-x64`
+4. `@zzozorang/sec-issue-finder`
 
-Future platform packages such as `@sec-issue-finder/darwin-x64` and `@sec-issue-finder/linux-arm64` should be added to this publish order only after their artifacts are built and smoke-tested.
+Future platform packages such as `@zzozorang/sec-issue-finder-darwin-x64` and `@zzozorang/sec-issue-finder-linux-arm64` should be added to this publish order only after their artifacts are built and smoke-tested.
 
 ## 5. Publish Command Examples
 
@@ -139,7 +139,7 @@ Run on a new machine, clean container, or clean environment where Rust is not in
 Global npm install:
 
 ```bash
-npm install -g sec-issue-finder
+npm install -g @zzozorang/sec-issue-finder
 scif scan --help
 ```
 
@@ -149,7 +149,7 @@ Local npm install:
 mkdir /tmp/scif-npm-published-test
 cd /tmp/scif-npm-published-test
 npm init -y
-npm install -D sec-issue-finder
+npm install -D @zzozorang/sec-issue-finder
 npx scif scan --help
 ```
 
@@ -159,7 +159,7 @@ pnpm install:
 mkdir /tmp/scif-pnpm-published-test
 cd /tmp/scif-pnpm-published-test
 pnpm init
-pnpm add -D sec-issue-finder
+pnpm add -D @zzozorang/sec-issue-finder
 pnpm exec scif scan --help
 ```
 
@@ -198,14 +198,14 @@ npm deprecate sec-issue-finder@0.1.0 "Broken prebuilt binary resolution; please 
 For a platform package:
 
 ```bash
-npm deprecate @sec-issue-finder/linux-x64@0.1.0 "Broken binary package; please upgrade to 0.1.1."
+npm deprecate @zzozorang/sec-issue-finder-linux-x64@0.1.0 "Broken binary package; please upgrade to 0.1.1."
 ```
 
 These commands are examples only. Do not run them unless a maintainer has decided on a rollback.
 
 ## 8. Never Do This
 
-- Do not publish the main `sec-issue-finder` package before platform packages.
+- Do not publish the main `@zzozorang/sec-issue-finder` package before platform packages.
 - Do not tag an unverified release as `latest`.
 - Do not add arbitrary binary downloads in `postinstall`.
 - Do not include the entire `target/` directory in any npm package.
